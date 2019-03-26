@@ -1,15 +1,37 @@
 {
-  "name": "",
-  "version": "",
+  "name": "about-the-author",
+  "version": "1.0.0",
   "description": "",
-  "author": "",
+  "author": "Jesse Bell",
   "license": "",
   "engines": {
     "node": ">=6.13.0"
   },
   "scripts": {
+    "webpack": "webpack --w",
+    "start": "nodemon ./server.js --watch",
+    "seed": "npx knex seed:run",
+    "test": "test"
   },
   "dependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.4.0",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.5",
+    "express": "^4.16.4",
+    "faker": "^4.1.0",
+    "install": "^0.12.2",
+    "jquery": "^3.3.1",
+    "knex": "^0.16.3",
+    "mocha": "^6.0.2",
+    "mysql": "^2.16.0",
+    "mysql2": "^1.6.5",
+    "npm": "^6.9.0",
+    "react": "^16.8.4",
+    "react-dom": "^16.8.4",
+    "sequelize": "^5.1.0",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.3.0"
   },
   "devDependencies": {
     "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor"
