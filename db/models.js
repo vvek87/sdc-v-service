@@ -1,41 +1,46 @@
-var sequelize = require('./index.js');
+const sequelize = require('./index.js');
 
-var authorId = '';
+// will implement use of the authorId variable
+// let authorId = '';
 
 exports.getAuthorInfo = (bookId, callback) => {
-  var authorQuery = `SELECT name, followers, biography FROM authors WHERE id IN (SELECT author_id FROM books WHERE id = ${bookId})`
+  const authorQuery = `SELECT name, followers, biography FROM authors WHERE id IN (SELECT author_id FROM books WHERE id = ${bookId})`;
   sequelize.sequelize.query(authorQuery)
-    .then(([results, metadata]) => {
-    // set authorId (from line 3) to be passed into getFiveBooks
-    results = JSON.stringify(results)
-    callback(null, results)
-  })
+    .then(([results]) => {
+      // set authorId (from line 3) to be passed into getFiveBooks
+      callback(null, results[0]);
+    })
     .catch((err) => {
       console.log('err', err);
-    })
+    });
 };
 
 exports.getFiveBooks = (authorId, callback) => {
   console.log('authorId', authorId);
-  var fiveBooksQuery = `SELECT title FROM books WHERE author_id = ${authorId} ORDER BY average_ratings LIMIT 5`;
+  const fiveBooksQuery = `SELECT title FROM books WHERE author_id = ${authorId} ORDER BY average_ratings LIMIT 5`;
   sequelize.sequelize.query(fiveBooksQuery)
-    .then(([results, metadata]) => {
-      results = JSON.stringify(results)
-    callback(null, results)
-  })
+    .then(([results]) => {
+      const fiveBooks = {};
+      fiveBooks.titles = [];
+      for (let i = 0; i < results.length; i += 1) {
+        console.log(results[i]);
+        fiveBooks.titles.push(results[i].title);
+      }
+      callback(null, fiveBooks);
+    })
     .catch((err) => {
       console.log('err', err);
-    })
+    });
 };
 
 exports.getBookItemHoverWindow = (bookId, callback) => {
   // somehow need to grab the author's name in this query, too
-  var bookQuery = `SELECT title, total_ratings, average_ratings, year, description FROM books WHERE id = ${bookId}`;
+  const bookQuery = `SELECT title, total_ratings, average_ratings, year, description FROM books WHERE id = ${bookId}`;
   sequelize.sequelize.query(bookQuery)
-    .then(([results, metadata]) => {
-    callback(null, results)
-  })
+    .then(([results]) => {
+      callback(null, results[0]);
+    })
     .catch((err) => {
       console.log('err', err);
-    })
+    });
 };

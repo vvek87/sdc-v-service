@@ -1,6 +1,6 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
-var $ = require('jquery')
+const React = require('react');
+const ReactDOM = require('react-dom');
+const $ = require('jquery');
 
 class App extends React.Component {
   constructor(props) {
@@ -26,7 +26,7 @@ class App extends React.Component {
       method: 'POST',
       data: {bookId: this.state.bookId },
       success: () => {
-        console.log('post worked')
+        console.log('post worked');
       }
     })
 
@@ -36,14 +36,12 @@ class App extends React.Component {
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
-        <input type="text" value={this.state.bookId} onChange={this.handleChange} ></input>
+        <input type="text" value={this.state.bookId} onChange={this.handleChange}></input>
         <button onSubmit={this.handleSubmit}>Get Book</button>
         </form>
         <p><a href="/author/">Author</a></p>
         <p><a href="/five-books-by-author">Five Books By Author</a></p>
         <p><a href="/book-item-hover-window">Book Item Hover Window</a></p>
-
-
       </div>
     )
   }

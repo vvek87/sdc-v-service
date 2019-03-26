@@ -1,32 +1,34 @@
-var express = require('express');
-var app = express();
-var db = require('./db/models.js');
-var path = require('path');
+const express = require('express');
+
+const app = express();
+const path = require('path');
+const db = require('./db/models.js');
+
 
 app.use(express.static(path.join(__dirname, './client/public')));
-app.use(express.urlencoded({extended: false}));
+app.use(express.urlencoded({ extended: false }));
 
 app.get('/author', (req, res) => {
-  db.getAuthorInfo(11, (err, results) => {
+  db.getAuthorInfo(31, (err, results) => {
     if (err) { throw err; }
     res.send(results);
-  })
+  });
 });
 
 app.get('/five-books-by-author', (req, res) => {
-  db.getFiveBooks(21, (err, results) => {
+  db.getFiveBooks(41, (err, results) => {
     if (err) { throw err; }
     res.send(results);
-  })
+  });
 });
 
 app.get('/book-item-hover-window', (req, res) => {
-  db.getBookItemHoverWindow(18, (err, results) => {
+  db.getBookItemHoverWindow(38, (err, results) => {
     if (err) { throw err; }
     res.send(results);
-  })
+  });
 });
 
 app.listen(3002, () => {
-  console.log('listeing at 3002')
-})
+  console.log('listeing at 3002');
+});
