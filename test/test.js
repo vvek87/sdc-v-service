@@ -6,3 +6,8 @@ describe('Array', function() {
     });
   });
 });
+
+
+// test
+  // check to see that getFiveBooks function return a length of 5 (if arr)
+
