@@ -30,5 +30,5 @@ app.get('/book-item-hover-window', (req, res) => {
 });
 
 app.listen(3002, () => {
-  console.log('listeing at 3002');
+  console.log('listening at 3002');
 });

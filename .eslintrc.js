@@ -6,11 +6,9 @@
  */
 
 module.exports = {
-  "extends":
-    // './node_modules/eslint-config-hackreactor/index.js',
-    './node_modules/eslint-config-airbnb-base/index.js',
-    "rules": {
-      "allowForLoopAfterthoughts": true,
-      "no-console": "off",
-    }
+  "extends": './node_modules/eslint-config-airbnb-base/index.js',
+  "rules": {
+    "allowForLoopAfterthoughts": true,
+    "no-console": "off",
+  }
 };
