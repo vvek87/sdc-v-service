@@ -9,7 +9,7 @@
   },
   "scripts": {
     "webpack": "webpack --w",
-    "start": "nodemon ./server.js --watch",
+    "start": "nodemon ./index.js --watch",
     "seed": "npx knex seed:run",
     "migration": "npx ",
     "test": "test"
