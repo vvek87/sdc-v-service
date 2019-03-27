@@ -45,19 +45,25 @@ npm install
 
 ## API Endpoints
 
-URL: /author
-Description: This example retrieves an author's name, number of follwers, and a biography.
-API Response:<br>
-`{
+**URL:** /author<br>
+**Description:** This example retrieves an author's name, number of follwers, and a biography.<br>
+**API Response:**<br>
+```
+{
   "name":"Rosalinda Kutch IV",
   "followers":91593,
-  "biography":"Sunt sed vitae aliquid. Qui libero et explicabo maxime veritatis asperiores quia et mollitia. Dolor ipsam   laboriosam libero tempore."
-}`
+  "biography":"Sunt sed vitae aliquid. Qui libero
+  et explicabo maxime veritatis asperiores quia et
+  mollitia. Dolor ipsam   laboriosam libero tempore."
+}
 
-URL: /five-books-by-author
-Description: This example retrives a maximum of five books written by an author.
-API Response:<br>
-`{
+```
+
+**URL:** /five-books-by-author<br>
+**Description:** This example retrives a maximum of five books written by an author.<br>
+**API Response:**<br>
+```
+{
   "titles":
   [
     "Licensed Rubber Cheese",
@@ -66,17 +72,22 @@ API Response:<br>
   "Practical Steel Pizza",
   "Incredible Wooden Sausages"
   ]
-}`
+}
 
-URL: book-item-hover-window
-Description: This example retrieves a book's title, total number of ratings, the average rating,
-the year of publication, and a description of the book.
-API Response:<br>
-`{<br>
+```
+
+**URL:** book-item-hover-window<br>
+**Description:** This example retrieves a book's title, total number<br>
+of ratings, the average rating, the year of publication, and a description of the book.<br>
+**API Response:**<br>
+```
+{<br>
   "title":"Handcrafted Rubber Table",
   "total_ratings":18274,
   "average_ratings":"4",
   "year":2007,
-  "description":"Eum hic dolorem. Illum omnis tenetur atque iusto non. Iste placeat et amet cupiditate quo."
-}`
+  "description":"Eum hic dolorem. Illum omnis tenetur atque
+  iusto non. Iste placeat et amet cupiditate quo."
+}
 
+```
