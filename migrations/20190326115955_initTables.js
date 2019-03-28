@@ -13,7 +13,7 @@ exports.up = function (knex, Promise) {
     .createTable('books', function (books) {
       books.increments('id');
       books.string('title');
-      books.increments('total_ratings');
+      books.integer('total_ratings');
       books.float('average_rating');
       books.text('description');
       books.string('cover_id');

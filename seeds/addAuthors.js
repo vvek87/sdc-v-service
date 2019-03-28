@@ -6,8 +6,8 @@ const createFakeAuthors = () => ({
   name: faker.name.findName(),
   followers: faker.random.number(),
   biography: faker.lorem.paragraph(),
-  createdAt: faker.date.past(),
-  updatedAt: faker.date.past(),
+  // createdAt: faker.date.past(),
+  // updatedAt: faker.date.past(),
 });
 
 exports.seed = (knex) => {
@@ -15,7 +15,7 @@ exports.seed = (knex) => {
   return knex('authors').del()
     .then(() => {
       const authors = [];
-      const desiredAuthors = 10;
+      const desiredAuthors = 100;
       for (let i = 0; i < desiredAuthors; i += 1) {
         authors.push(createFakeAuthors());
       }
