@@ -1,22 +1,22 @@
 const faker = require('faker');
-const knex = require('../knexfile.js')
+// const knex = require('../knexfile.js');
 
 
-var createFakeAuthors = () => ({
+const createFakeAuthors = () => ({
   name: faker.name.findName(),
   followers: faker.random.number(),
   biography: faker.lorem.paragraph(),
   createdAt: faker.date.past(),
-  updatedAt: faker.date.past()
+  updatedAt: faker.date.past(),
 });
 
-exports.seed = function(knex, Promise) {
+exports.seed = (knex) => {
   // Deletes ALL existing entries
   return knex('authors').del()
-    .then(function () {
-      var authors = [];
-      var desiredAuthors = 10;
-      for (var i = 0; i < desiredAuthors; i++) {
+    .then(() => {
+      const authors = [];
+      const desiredAuthors = 10;
+      for (let i = 0; i < desiredAuthors; i += 1) {
         authors.push(createFakeAuthors());
       }
       return knex('authors').insert(authors);

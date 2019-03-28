@@ -1,56 +1,57 @@
-var Sequelize = require('sequelize');
-var sequelize = new Sequelize('goodreads', 'root', null, {
-  dialect: 'mysql'
-});
+// const Sequelize = require('sequelize');
 
-sequelize
-  .authenticate()
-  .then(() => {
-    console.log('connection connected!')
-  })
-  .catch(err => {
-    console.error('unable to connect to db', err)
-  });
+// const sequelize = new Sequelize('goodreads', 'root', null, {
+//   dialect: 'mysql',
+// });
 
-  var Authors = sequelize.define('authors', {
-    id: {
-      autoIncrement: true,
-      type: Sequelize.INTEGER,
-      primaryKey: true
-    },
-    name: Sequelize.STRING,
-    followers: Sequelize.INTEGER,
-    biography: Sequelize.TEXT
-  });
+// sequelize
+//   .authenticate()
+//   .then(() => {
+//     console.log('connection connected!');
+//   })
+//   .catch((err) => {
+//     console.error('unable to connect to db', err);
+//   });
 
-  var Books = sequelize.define('books', {
-    id: {
-      autoIncrement: true,
-      type: Sequelize.INTEGER,
-      primaryKey: true
-    },
-    title: Sequelize.STRING,
-    year: Sequelize.INTEGER,
-    total_ratings: Sequelize.INTEGER,
-    average_ratings: Sequelize.DECIMAL,
-    description: Sequelize.TEXT,
-    cover_image: Sequelize.TEXT,
-    author_id: {
-      type: Sequelize.INTEGER,
-      references: {
-        model: Authors,
-        key: 'id',
-      }
-    }
-  });
+// const Authors = sequelize.define('authors', {
+//   id: {
+//     autoIncrement: true,
+//     type: Sequelize.INTEGER,
+//     primaryKey: true,
+//   },
+//   name: Sequelize.STRING,
+//   followers: Sequelize.INTEGER,
+//   biography: Sequelize.TEXT,
+// });
 
-  // need to add and/or fix associations
-Books.belongsTo(Authors);
+// const Books = sequelize.define('books', {
+//   id: {
+//     autoIncrement: true,
+//     type: Sequelize.INTEGER,
+//     primaryKey: true,
+//   },
+//   title: Sequelize.STRING,
+//   year: Sequelize.INTEGER,
+//   total_ratings: Sequelize.INTEGER,
+//   average_ratings: Sequelize.DECIMAL,
+//   description: Sequelize.TEXT,
+//   cover_image: Sequelize.TEXT,
+//   author_id: {
+//     type: Sequelize.INTEGER,
+//     references: {
+//       model: Authors,
+//       key: 'id',
+//     },
+//   },
+// });
 
-Authors.sync();
-Books.sync();
+// // need to add and/or fix associations
+// Books.belongsTo(Authors);
 
-exports.Authors = Authors;
-exports.Books = Books;
-exports.sequelize = sequelize;
+// Authors.sync();
+// Books.sync();
+
+// exports.Authors = Authors;
+// exports.Books = Books;
+// exports.sequelize = sequelize;
 
