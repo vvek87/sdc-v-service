@@ -10,8 +10,9 @@
   "scripts": {
     "webpack": "webpack --w",
     "start": "nodemon ./index.js --watch",
+    "migration": "npx knex migrate:latest --env development",
+    "rollback": "npx knex migrate:rollback",
     "seed": "npx knex seed:run",
-    "migration": "npx ",
     "test": "test"
   },
   "dependencies": {

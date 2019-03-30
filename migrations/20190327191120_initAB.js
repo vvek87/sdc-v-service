@@ -1,5 +1,3 @@
-// shell command: npx knex migrate:make migration_name
-
 
 exports.up = function (knex, Promise) {
   // priority:
@@ -7,19 +5,20 @@ exports.up = function (knex, Promise) {
   // create books table
   return knex.schema
     .createTable('authors', function (authors) {
-      authors.increments('id').primary();
+      authors.increments('id');
       authors.string('name');
       authors.integer('followers');
       authors.text('biography');
     })
     .createTable('books', function (books) {
-      books.increments('bookId').primary();
+      books.increments('id');
       books.string('title');
       books.integer('total_ratings');
       books.float('average_rating');
       books.text('description');
-      books.string('cover_id');
-      books.integer('author_id').references('id').inTable('authors');
+      books.string('cover_image');
+      books.integer('author_id').unsigned().notNullable;
+      books.foreign('author_id').references('id').inTable('authors')
       // .notNullable().onDelete('cascade');
     })
 };
