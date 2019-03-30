@@ -10,5 +10,6 @@ module.exports = {
   "rules": {
     "allowForLoopAfterthoughts": true,
     "no-console": "off",
-  }
+  },
+  "plugins": ["jest"]
 };
