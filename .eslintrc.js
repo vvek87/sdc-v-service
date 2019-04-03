@@ -11,5 +11,9 @@ module.exports = {
     "allowForLoopAfterthoughts": true,
     "no-console": "off",
   },
-  "plugins": ["jest"]
+  "plugins": ["jest"],
+  "env": {
+    "jest": true
+  },
+  "parser": "babel-eslint"
 };

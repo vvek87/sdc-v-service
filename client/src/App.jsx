@@ -2,33 +2,38 @@ const React = require('react');
 const ReactDOM = require('react-dom');
 const $ = require('jquery');
 
+
 class App extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
-      bookId: 0
-    }
+      authorInfo: {},
+    };
 
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    // this.handleChange = this.handleChange.bind(this);
+    // this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleChange (event) {
-    this.setState({bookId: event.target.value}, () => {
-      console.log('this.state.bookId', this.state.bookId);
-    })
-  }
+  // handleChange (event) {
+  //   this.setState({bookId: event.target.value}, () => {
+  //     console.log('this.state.bookId', this.state.bookId);
+  //   })
+  // }
 
-  handleSubmit (event) {
-    $.ajax({
-      url: 'author',
-      method: 'POST',
-      data: {bookId: this.state.bookId },
-      success: () => {
-        console.log('post worked');
-      }
-    })
+  // handleSubmit (event) {
+  //   $.ajax({
+  //     url: 'author',
+  //     method: 'POST',
+  //     data: { bookId: this.state.bookId },
+  //     success: () => {
+  //       console.log('post worked');
+  //     }
+  //   })
+
+  // }
+
+  componentDidMount () {
 
   }
 
@@ -48,3 +53,5 @@ class App extends React.Component {
 }
 
 ReactDOM.render(<App /> , document.getElementById('root'));
+
+export default App;

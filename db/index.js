@@ -54,4 +54,3 @@ Books.sync();
 exports.Authors = Authors;
 exports.Books = Books;
 exports.sequelize = sequelize;
-
