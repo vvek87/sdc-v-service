@@ -5,6 +5,7 @@ const getFiveBooks = (authorId, callback) => {
   const fiveBooksQuery = `SELECT title FROM books WHERE author_id = ${authorId} ORDER BY average_rating LIMIT 5`;
   ORM.sequelize.query(fiveBooksQuery)
     .then(([results]) => {
+      // separate out as its own function, then able to test its output
       const fiveBooks = {};
       fiveBooks.titles = [];
       for (let i = 0; i < results.length; i += 1) {
