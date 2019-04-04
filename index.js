@@ -9,14 +9,15 @@ app.use(express.static(path.join(__dirname, './client/public')));
 app.use(express.urlencoded({ extended: false }));
 
 app.get('/author', (req, res) => {
-  db.getAuthorInfo(31, (err, results) => {
+  db.getAuthorInfo(14, (err, results) => {
     if (err) { throw err; }
     res.send(results);
   });
 });
 
+// the below endpoint has been folded into the '/author' endpoint
 app.get('/five-books-by-author', (req, res) => {
-  db.getFiveBooks(41, (err, results) => {
+  db.getFiveBooks(46, (err, results) => {
     if (err) { throw err; }
     res.send(results);
   });
