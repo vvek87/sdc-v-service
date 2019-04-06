@@ -8,8 +8,9 @@ const db = require('./db/models.js');
 app.use(express.static(path.join(__dirname, './client/public')));
 app.use(express.urlencoded({ extended: false }));
 
-app.get('/author', (req, res) => {
-  db.getAuthorInfo(14, (err, results) => {
+app.post('/author', (req, res) => {
+  let bookId = req.body.bookId;
+  db.getAuthorInfo(bookId, (err, results) => {
     if (err) { throw err; }
     res.send(results);
   });
