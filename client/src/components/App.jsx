@@ -1,7 +1,6 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import $ from 'jquery';
-import FiveBooks from './components/FiveBooks.jsx';
+import FiveBooks from './FiveBooks.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -11,32 +10,14 @@ class App extends React.Component {
       authorInfo: {},
     };
 
-    // this.handleChange = this.handleChange.bind(this);
-    // this.handleSubmit = this.handleSubmit.bind(this);
+    this.getInfo = this.getInfo.bind(this);
   }
 
-  // handleChange (event) {
-  //   this.setState({bookId: event.target.value}, () => {
-  //     console.log('this.state.bookId', this.state.bookId);
-  //   })
-  // }
 
-  // handleSubmit (event) {
-  //   $.ajax({
-  //     url: 'author',
-  //     method: 'POST',
-  //     data: { bookId: this.state.bookId },
-  //     success: () => {
-  //       console.log('post worked');
-  //     }
-  //   })
-
-  // }
-
-  componentDidMount() {
+  getInfo() {
     $.ajax({
       url: '/author',
-      method: 'GET',
+      method: 'POST',
       data: { bookId: 13 },
       success: (results) => {
         this.setState(
@@ -47,6 +28,11 @@ class App extends React.Component {
           });
       },
     });
+  }
+
+
+  componentDidMount() {
+    this.getInfo();
   }
 
   render() {
@@ -71,6 +57,5 @@ class App extends React.Component {
   }
 }
 
-ReactDOM.render(<App />, document.getElementById('root'));
 
 export default App;
