@@ -32,7 +32,8 @@ NOTE: This manual step of creating the db is a temporary workaround.
 To start the application, Please run the following "package.json" scripts:<br>
 1. `npm run webpack` to start Webpack.<br>
 2. `npm run start` to start the Node server.<br>
-3. `npm run seed` to add fake data to the database.<br>
+3. `npm run migration` to create the needed tables in the db.<br>
+4. `npm run seed` to add fake data to the db.<br>
 
 ## Requirements
 
