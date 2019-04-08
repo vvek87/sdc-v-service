@@ -19,8 +19,17 @@
 1. [Development](#development)
 
 ## Usage
+Complete the following step ONLY before starting the application for the first time:
+1. Open MySql from the command line.
+2. Run the following command:
 
-> Pleaes run the following "package.json" scripts to start the application;<br>
+```sh
+CREATE DATABASE goodreads;
+```
+
+NOTE: This manual step of creating the db is a temporary workaround.
+
+To start the application, Please run the following "package.json" scripts:<br>
 1. `npm run webpack` to start Webpack.<br>
 2. `npm run start` to start the Node server.<br>
 3. `npm run seed` to add fake data to the database.<br>
