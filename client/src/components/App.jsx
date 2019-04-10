@@ -16,9 +16,9 @@ class App extends React.Component {
 
   getInfo() {
     $.ajax({
-      url: '/author',
-      method: 'POST',
-      data: { bookId: 13 },
+      url: '/:bookId',
+      method: 'GET',
+      // data: { bookId: 13 },
       success: (results) => {
         this.setState(
           {

@@ -2,15 +2,18 @@ const express = require('express');
 
 const app = express();
 const path = require('path');
+const cors = require('cors');
 const db = require('./db/models.js');
 
 
 app.use(express.static(path.join(__dirname, './client/public')));
 app.use(express.urlencoded({ extended: false }));
+app.use(cors());
 
-app.post('/author', (req, res) => {
-  let bookId = req.body.bookId;
-  db.getAuthorInfo(bookId, (err, results) => {
+app.get('/:bookId', (req, res) => {
+  // let bookId = req.body.bookId;
+  console.log('req.params', req.params);
+  db.getAuthorInfo(req.params.bookId, (err, results) => {
     if (err) { throw err; }
     res.send(results);
   });
