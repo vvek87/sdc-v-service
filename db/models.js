@@ -27,6 +27,7 @@ const getAuthorInfo = (bookId, callback) => {
       getFiveBooks(authorId, (err, books) => {
         console.log('books', books)
         if (err) { throw err; }
+        // issue: the below query will only replace first element of books.title array
         ORM.sequelize.query('SELECT title, total_ratings, average_rating, year, description FROM books WHERE title = ?',
           { replacements: books.titles }
         ).then(details => {

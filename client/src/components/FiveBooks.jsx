@@ -1,4 +1,5 @@
 import React from 'react';
+import styled from 'styled-components';
 import $ from 'jquery';
 
 class FiveBooks extends React.Component {
@@ -26,7 +27,11 @@ class FiveBooks extends React.Component {
   render() {
     return (
       <div>
-        {this.state.titles.map(title => <p>{title}</p>)}
+        <table>
+        {this.state.titles.map(title => <td>{title}</td>)}
+        </table>
+
+
         <br></br>
       </div>
 
