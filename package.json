@@ -67,10 +67,12 @@
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
     "sequelize": "^5.1.0",
+    "styled-components": "^4.2.0",
     "webpack": "^4.29.6",
     "webpack-cli": "^3.3.0"
   },
   "devDependencies": {
+    "babel-plugin-styled-components": "^1.10.0",
     "eslint": "^5.15.3",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor",

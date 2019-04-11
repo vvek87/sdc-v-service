@@ -10,10 +10,10 @@ app.use(express.static(path.join(__dirname, './client/public')));
 app.use(express.urlencoded({ extended: false }));
 app.use(cors());
 
-app.get('/:bookId', (req, res) => {
+app.get('/author', (req, res) => {
   // let bookId = req.body.bookId;
   console.log('req.params', req.params);
-  db.getAuthorInfo(req.params.bookId, (err, results) => {
+  db.getAuthorInfo(13, (err, results) => {
     if (err) { throw err; }
     res.send(results);
   });

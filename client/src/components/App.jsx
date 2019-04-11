@@ -1,6 +1,13 @@
 import React from 'react';
+import styled from 'styled-components';
 import $ from 'jquery';
+import About from './About.jsx';
+import AuthorName from './AuthorName.jsx';
+import Biography from './Biography.jsx';
+import FollowButton from './FollowButton.jsx';
+import BooksBy from './BooksBy.jsx';
 import FiveBooks from './FiveBooks.jsx';
+
 
 class App extends React.Component {
   constructor(props) {
@@ -16,7 +23,7 @@ class App extends React.Component {
 
   getInfo() {
     $.ajax({
-      url: '/:bookId',
+      url: '/author',
       method: 'GET',
       // data: { bookId: 13 },
       success: (results) => {
@@ -36,19 +43,16 @@ class App extends React.Component {
   }
 
   render() {
-    // const listBooks = this.state.authorInfo.titles.map(title => <p>{title}</p>);
     console.log('this.state.authorInfo.titles', this.state.authorInfo.titles);
     return (
       <div>
-        <h5>ABOUT {this.state.authorInfo.name}</h5>
-
-        <h4>{this.state.authorInfo.name}</h4>
-        <p>{this.state.authorInfo.followers} followers</p>
-        <button>Follow Author</button>
+        <About name={this.state.authorInfo.name}></About>
+        <AuthorName name={this.state.authorInfo.name} followers={this.state.authorInfo.followers}></AuthorName>
+        <FollowButton>Follow Author</FollowButton>
         <br></br>
-        <div>{this.state.authorInfo.biography}</div>
+        <Biography bio={this.state.authorInfo.biography}></Biography>
         <br></br>
-        <p>Books by {this.state.authorInfo.name}</p>
+       <BooksBy name={this.state.authorInfo.name}></BooksBy>
         <div>
           <FiveBooks books={this.state.authorInfo.titles} />
         </div>
