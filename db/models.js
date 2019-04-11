@@ -23,12 +23,17 @@ const getAuthorInfo = (bookId, callback) => {
   const authorQuery = `SELECT id, name, followers, biography FROM authors WHERE id IN (SELECT author_id FROM books WHERE id = ${bookId})`;
   ORM.sequelize.query(authorQuery)
     .then(([results]) => {
-      console.log('results', results);
       const authorId = results[0].id;
       getFiveBooks(authorId, (err, books) => {
+        console.log('books', books)
         if (err) { throw err; }
-        results[0].titles = books.titles;
-        callback(null, results[0]);
+        ORM.sequelize.query('SELECT title, total_ratings, average_rating, year, description FROM books WHERE title = ?',
+          { replacements: books.titles }
+        ).then(details => {
+          results[0].titles = books.titles;
+          results[0].bookDetails = details;
+          callback(null, results[0]);
+        })
       });
     })
     .catch((err) => {
@@ -37,8 +42,8 @@ const getAuthorInfo = (bookId, callback) => {
     });
 };
 
+// can probably delete this function as it's no longer needed
 const getBookItemHoverWindow = (bookId, callback) => {
-  // somehow need to grab the author's name in this query, too
   const bookQuery = `SELECT title, total_ratings, average_rating, year, description FROM books WHERE id = ${bookId}`;
   ORM.sequelize.query(bookQuery)
     .then(([results]) => {

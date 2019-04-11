@@ -23,7 +23,7 @@ class App extends React.Component {
 
   getInfo() {
     $.ajax({
-      url: '/author',
+      url: 'http://localhost:3002/author',
       method: 'GET',
       // data: { bookId: 13 },
       success: (results) => {
