@@ -11,7 +11,7 @@ class Biography extends React.Component {
   render() {
     return (
       <div>
-        <Paragraph>{this.props.bio}</Paragraph>
+      <Paragraph>{this.props.bio}</Paragraph>
       </div>
     );
   }

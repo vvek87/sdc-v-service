@@ -6,6 +6,7 @@ const createFakeAuthors = () => ({
   name: faker.name.findName(),
   followers: faker.random.number(),
   biography: faker.lorem.paragraph(),
+  author_image: faker.image.people(),
   // createdAt: faker.date.past(),
   // updatedAt: faker.date.past(),
 });

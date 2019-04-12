@@ -20,7 +20,7 @@ const getFiveBooks = (authorId, callback) => {
 };
 
 const getAuthorInfo = (bookId, callback) => {
-  const authorQuery = `SELECT id, name, followers, biography FROM authors WHERE id IN (SELECT author_id FROM books WHERE id = ${bookId})`;
+  const authorQuery = `SELECT id, name, followers, biography, author_image FROM authors WHERE id IN (SELECT author_id FROM books WHERE id = ${bookId})`;
   ORM.sequelize.query(authorQuery)
     .then(([results]) => {
       const authorId = results[0].id;
@@ -28,7 +28,7 @@ const getAuthorInfo = (bookId, callback) => {
         console.log('books', books)
         if (err) { throw err; }
         // issue: the below query will only replace first element of books.title array
-        ORM.sequelize.query('SELECT title, total_ratings, average_rating, year, description FROM books WHERE title = ?',
+        ORM.sequelize.query('SELECT title, total_ratings, average_rating, year, description, cover_image FROM books WHERE title = ?',
           { replacements: books.titles }
         ).then(details => {
           results[0].titles = books.titles;

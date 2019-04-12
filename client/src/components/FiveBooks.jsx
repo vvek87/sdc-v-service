@@ -2,20 +2,26 @@ import React from 'react';
 import styled from 'styled-components';
 import $ from 'jquery';
 
+const Image = styled.img`
+  height: 95px;
+  width: 80px;
+`
+
 class FiveBooks extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      titles: [],
+      details: [],
     };
 
     this.onHover = this.onHover.bind(this);
   }
 
   componentDidUpdate() {
-    if (this.props.books !== undefined && this.state.titles.length === 0) {
-      this.setState({ titles: this.props.books }, () => {
+    if (this.props.details !== undefined && this.state.details.length === 0) {
+      this.setState({ details: this.props.details }, () => {
+        console.log('this.props.details', this.props.details);
       });
     }
   }
@@ -28,7 +34,7 @@ class FiveBooks extends React.Component {
     return (
       <div>
         <table>
-        {this.state.titles.map(title => <td>{title}</td>)}
+        {this.state.details.map(cover => <td><Image src={cover[0].cover_image}></Image></td>)}
         </table>
 
 

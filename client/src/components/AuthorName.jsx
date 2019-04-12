@@ -12,12 +12,21 @@ const Span = styled.span`
   margin-bottom: 4px;
 `;
 
+const Image = styled.img`
+  border-radius: 50%;
+  height: 95px;
+  width: 80px;
+`
+
 class AuthorName extends React.Component {
   render() {
     return (
       <div>
+        <span>
+      <Image src={this.props.pic}></Image>
       <Paragraph>{this.props.name}</Paragraph>
       <Span>{this.props.followers} followers</Span>
+      </span>
       </div>
     );
   }
