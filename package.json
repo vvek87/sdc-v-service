@@ -67,7 +67,7 @@
     "npm": "^6.9.0",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
-    "sequelize": "^5.1.0",
+    "sequelize": "^5.3.5",
     "sequelize-cli": "^5.4.0",
     "styled-components": "^4.2.0",
     "webpack": "^4.29.6",
