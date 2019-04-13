@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import $ from 'jquery';
 
 const Button = styled.button`
   background-color: #f4f1ea;
@@ -13,7 +12,7 @@ const Button = styled.button`
   padding-left: 12px;
   padding-right: 12px;
   padding-top: 8px;
-`
+`;
 
 class FollowButton extends React.Component {
   render() {

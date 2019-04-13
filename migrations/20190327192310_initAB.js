@@ -8,6 +8,7 @@ exports.up = function (knex, Promise) {
       authors.string('name');
       authors.integer('followers');
       authors.text('biography');
+      authors.string('author_image');
     })
     .createTable('books', function (books) {
       books.increments('id');

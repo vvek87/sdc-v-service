@@ -23,7 +23,7 @@ class App extends React.Component {
 
   getInfo() {
     $.ajax({
-      url: '/author',
+      url: 'http://localhost:3002/author',
       method: 'GET',
       // data: { bookId: 13 },
       success: (results) => {
@@ -47,14 +47,13 @@ class App extends React.Component {
     return (
       <div>
         <About name={this.state.authorInfo.name}></About>
-        <AuthorName name={this.state.authorInfo.name} followers={this.state.authorInfo.followers}></AuthorName>
+        <AuthorName pic={this.state.authorInfo.author_image} name={this.state.authorInfo.name} followers={this.state.authorInfo.followers}></AuthorName>
         <FollowButton>Follow Author</FollowButton>
-        <br></br>
-        <Biography bio={this.state.authorInfo.biography}></Biography>
-        <br></br>
+
+        <Biography name={this.state.authorInfo.name} bio={this.state.authorInfo.biography}></Biography>
        <BooksBy name={this.state.authorInfo.name}></BooksBy>
         <div>
-          <FiveBooks books={this.state.authorInfo.titles} />
+          <FiveBooks details={this.state.authorInfo.bookDetails} />
         </div>
       </div>
     );

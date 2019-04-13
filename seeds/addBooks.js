@@ -6,7 +6,7 @@ const createFakeBooks = () => ({
   total_ratings: faker.random.number(),
   average_rating: faker.random.number({ min: 0, max: 5 }),
   description: faker.lorem.paragraph(),
-  cover_image: faker.image.imageUrl(),
+  cover_image: faker.image.city(),
   author_id: faker.random.number({ min: 1, max: 100 }),
   // createdAt: faker.date.past(),
   // updatedAt: faker.date.past(),

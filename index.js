@@ -28,7 +28,7 @@ app.get('/five-books-by-author', (req, res) => {
 });
 
 app.get('/book-item-hover-window', (req, res) => {
-  db.getBookItemHoverWindow(38, (err, results) => {
+  db.getBookItemHoverWindow('Ergonomic Frozen Gloves', (err, results) => {
     if (err) { throw err; }
     res.send(results);
   });
