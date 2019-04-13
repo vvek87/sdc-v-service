@@ -8,8 +8,8 @@ const createFakeBooks = () => ({
   description: faker.lorem.paragraph(),
   cover_image: faker.image.city(),
   author_id: faker.random.number({ min: 1, max: 100 }),
-  // createdAt: faker.date.past(),
-  // updatedAt: faker.date.past(),
+  createdAt: faker.date.past(),
+  updatedAt: faker.date.past(),
 });
 
 exports.seed = (knex) => {

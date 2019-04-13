@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import $ from 'jquery';
-import About from './About.jsx';
+import AboutAuthorHeader from './AboutAuthorHeader.jsx'
 import AuthorName from './AuthorName.jsx';
 import Biography from './Biography.jsx';
 import FollowButton from './FollowButton.jsx';
@@ -46,10 +46,9 @@ class App extends React.Component {
     console.log('this.state.authorInfo.titles', this.state.authorInfo.titles);
     return (
       <div>
-        <About name={this.state.authorInfo.name}></About>
+        <AboutAuthorHeader name={this.state.authorInfo.name}></AboutAuthorHeader>
         <AuthorName pic={this.state.authorInfo.author_image} name={this.state.authorInfo.name} followers={this.state.authorInfo.followers}></AuthorName>
         <FollowButton>Follow Author</FollowButton>
-
         <Biography name={this.state.authorInfo.name} bio={this.state.authorInfo.biography}></Biography>
        <BooksBy name={this.state.authorInfo.name}></BooksBy>
         <div>

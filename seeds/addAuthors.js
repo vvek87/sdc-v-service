@@ -7,8 +7,8 @@ const createFakeAuthors = () => ({
   followers: faker.random.number(),
   biography: faker.lorem.paragraph(),
   author_image: faker.image.people(),
-  // createdAt: faker.date.past(),
-  // updatedAt: faker.date.past(),
+  createdAt: faker.date.past(),
+  updatedAt: faker.date.past(),
 });
 
 exports.seed = (knex) => {

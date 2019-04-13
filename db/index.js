@@ -22,6 +22,7 @@ const Authors = sequelize.define('authors', {
   name: Sequelize.STRING,
   followers: Sequelize.INTEGER,
   biography: Sequelize.TEXT,
+  author_image: Sequelize.STRING,
 });
 
 const Books = sequelize.define('books', {
@@ -33,7 +34,7 @@ const Books = sequelize.define('books', {
   title: Sequelize.STRING,
   year: Sequelize.INTEGER,
   total_ratings: Sequelize.INTEGER,
-  average_ratings: Sequelize.DECIMAL,
+  average_rating: Sequelize.DECIMAL,
   description: Sequelize.TEXT,
   cover_image: Sequelize.TEXT,
   author_id: {

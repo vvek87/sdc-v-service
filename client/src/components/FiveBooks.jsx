@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import $ from 'jquery';
 
 const Image = styled.img`
-  height: 95px;
-  width: 80px;
+  height: 85px;
+  width: 60px;
 `
 
 class FiveBooks extends React.Component {
