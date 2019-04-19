@@ -6,14 +6,15 @@ const cors = require('cors');
 const db = require('./db/models.js');
 
 
-app.use(express.static(path.join(__dirname, './client/public')));
+// app.use(express.static(path.join(__dirname, './client/public')));
+app.use('/:id', express.static(`${__dirname}/client/public`));
 app.use(express.urlencoded({ extended: false }));
 app.use(cors());
 
-app.get('/author', (req, res) => {
-  // let bookId = req.body.bookId;
-  console.log('req.params', req.params);
-  db.getAuthorInfo(13, (err, results) => {
+app.post('/:id', (req, res) => {
+  const bookId = req.body.bookId;
+  console.log('bookId', bookId);
+  db.getAuthorInfo(bookId, (err, results) => {
     if (err) { throw err; }
     res.send(results);
   });

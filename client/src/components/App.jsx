@@ -18,14 +18,14 @@ class App extends React.Component {
     };
 
     this.getInfo = this.getInfo.bind(this);
+    this.getId = this.getId.bind(this);
   }
 
-
-  getInfo() {
+  getInfo(id) {
     $.ajax({
-      url: 'http://localhost:3002/author',
-      method: 'GET',
-      // data: { bookId: 13 },
+      url: `http://localhost:3002/${id}`,
+      method: 'POST',
+      data: { bookId: id },
       success: (results) => {
         this.setState(
           {
@@ -37,9 +37,16 @@ class App extends React.Component {
     });
   }
 
+  getId() {
+    const id = Number(window.location.pathname.split('/')[1]);
+    console.log('id', id);
+    return id;
+  }
 
   componentDidMount() {
-    this.getInfo();
+    console.log('appl', App)
+    const id = this.getId();
+    this.getInfo(id);
   }
 
   render() {
@@ -48,11 +55,10 @@ class App extends React.Component {
       <div>
         <AboutAuthorHeader name={this.state.authorInfo.name}></AboutAuthorHeader>
         <AuthorName pic={this.state.authorInfo.author_image} name={this.state.authorInfo.name} followers={this.state.authorInfo.followers}></AuthorName>
-        <FollowButton>Follow Author</FollowButton>
         <Biography name={this.state.authorInfo.name} bio={this.state.authorInfo.biography}></Biography>
-       <BooksBy name={this.state.authorInfo.name}></BooksBy>
+        <BooksBy name={this.state.authorInfo.name}></BooksBy>
         <div>
-          <FiveBooks details={this.state.authorInfo.bookDetails} />
+          <FiveBooks name={this.state.authorInfo.name} details={this.state.authorInfo.bookDetails} />
         </div>
       </div>
     );

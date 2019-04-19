@@ -9,7 +9,7 @@
   },
   "scripts": {
     "create-db": "npx sequelize db:create",
-    "webpack": "webpack --w",
+    "build": "webpack --w",
     "start": "nodemon ./index.js --watch",
     "seed": "npx knex seed:run",
     "test": "jest"
@@ -65,6 +65,7 @@
     "npm": "^6.9.0",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
+    "react-tooltip": "^3.10.0",
     "sequelize": "^5.3.5",
     "sequelize-cli": "^5.4.0",
     "styled-components": "^4.2.0",
