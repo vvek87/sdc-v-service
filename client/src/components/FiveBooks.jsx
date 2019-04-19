@@ -1,18 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
-import $ from 'jquery';
 import ReactTooltip from 'react-tooltip';
 
 const Image = styled.img`
   height: 85px;
   width: 60px;
 `
-
-/* border of tooltip
-  border-width: 5px;
-  border-style: solid;
-  border-color: #f4f1ea;
-  */
 
 const Strong = styled.strong`
     color: 333333;
@@ -73,31 +66,17 @@ class FiveBooks extends React.Component {
     };
 
     this.renderReview = this.renderReview.bind(this);
-    // this.chopDescription = this.chopDescription.bind(this);
   }
-
-
-
-  // chopDescription () {
-  //   const abridged = [];
-  //   this.state.details.map(book => {
-  //     const shortend = book[0].description.splice(0, 10) + '...more'
-  //     abridged.push(shortend);
-  //   });
-  //   this.setSate( { details.description: })
-  // }
 
   componentDidUpdate() {
     if (this.props.details !== undefined && this.state.details.length === 0) {
       this.setState({ details: this.props.details }, () => {
         console.log('this.props.details', this.props.details);
-        // this.chopDescription();
       });
     }
   }
 
   renderReview (rating) {
-    console.log('rating', rating)
     rating = Math.floor(rating);
 
     switch (rating) {

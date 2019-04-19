@@ -1,10 +1,8 @@
 import React from 'react';
-import styled from 'styled-components';
 import $ from 'jquery';
 import AboutAuthorHeader from './AboutAuthorHeader.jsx'
 import AuthorName from './AuthorName.jsx';
 import Biography from './Biography.jsx';
-import FollowButton from './FollowButton.jsx';
 import BooksBy from './BooksBy.jsx';
 import FiveBooks from './FiveBooks.jsx';
 
