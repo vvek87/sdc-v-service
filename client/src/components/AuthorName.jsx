@@ -40,6 +40,8 @@ const Button = styled.button`
 class AuthorName extends React.Component {
   render() {
     return (
+
+      // consider: https://developer.mozilla.org/en-US/docs/Web/CSS/clear
       <div>
       <AuthorImage src={this.props.pic}></AuthorImage>
       <Name>{this.props.name}</Name>
