@@ -1,5 +1,8 @@
 const Sequelize = require('sequelize');
 
+// MYSQL_ROOT_PASSWORD
+// MYSQL_DATABASE
+// MYSQL_PASSWORD
 const sequelize = new Sequelize('goodreads', 'root', null, {
   dialect: 'mysql',
 });
