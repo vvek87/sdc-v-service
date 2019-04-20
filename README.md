@@ -19,39 +19,27 @@
 1. [Development](#development)
 
 ## Usage
-Complete the following step ONLY before starting the application for the first time:
-1. Open MySql from the command line.
-2. Run the following command:
 
-```sh
-CREATE DATABASE goodreads;
-```
+### Initial Setup
+Complete these two steps ONCE before starting the application for the first time:
+1.  `npm install -g webpack` to install webpack globally.
+1. `npm install` to install dependencies.
+2. `npm run create-db` to create MySql database for the application.
 
-NOTE: This manual step of creating the db is a temporary workaround.
-
+### Regular Usage
 To start the application, Please run the following "package.json" scripts:<br>
 1. `npm run webpack` to start Webpack.<br>
 2. `npm run start` to start the Node server.<br>
-3. `npm run migration` to create the needed tables in the db.<br>
-4. `npm run seed` to add fake data to the db.<br>
+3. `npm run seed` to add fake data to the db.<br>
 
 ## Requirements
 
 An `nvmrc` file is included if using [nvm](https://github.com/creationix/nvm).
 
-- Node 6.13.0
+- Node 10.13.0
 - etc
 
 ## Development
-
-### Installing Dependencies
-
-From within the root directory:
-
-```sh
-npm install -g webpack
-npm install
-```
 
 ## API Endpoints
 
@@ -65,6 +53,7 @@ npm install
   "biography":"Sunt sed vitae aliquid. Qui libero
   et explicabo maxime veritatis asperiores quia et
   mollitia. Dolor ipsam   laboriosam libero tempore."
+  "author_image": '[link to image]'
 }
 
 ```
@@ -101,3 +90,4 @@ of ratings, the average rating, the year of publication, and a description of th
 }
 
 ```
+# New Document

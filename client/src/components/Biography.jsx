@@ -5,6 +5,7 @@ const Paragraph = styled.p`
   color: #181818;
   font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
   line-height: 18px;
+  width: 300px;
 `;
 
 class Biography extends React.Component {

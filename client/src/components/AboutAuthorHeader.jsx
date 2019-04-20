@@ -13,7 +13,7 @@ const Paragraph = styled.p`
   border-bottom: 1px solid #D8D8D8;
 `;
 
-class About extends React.Component {
+class AboutAuthorHeader extends React.Component {
   render() {
     return (
       <Paragraph>About {this.props.name}</Paragraph>
@@ -21,4 +21,4 @@ class About extends React.Component {
   }
 }
 
-export default About;
+export default AboutAuthorHeader;

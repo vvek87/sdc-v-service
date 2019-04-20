@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Paragraph = styled.p`
+const Name = styled.p`
   color: #382110;
   font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
   height: 24px;
@@ -16,7 +16,7 @@ const Paragraph = styled.p`
 class BooksBy extends React.Component {
   render() {
     return (
-      <Paragraph>Books By {this.props.name}</Paragraph>
+      <Name>Books By {this.props.name}</Name>
     );
   }
 }
