@@ -1,10 +1,72 @@
 version: '2.1'
 
 services:
-  jb-service:
-    image: jb-service
-    build: .
-    environment:
-      NODE_ENV: production
-    ports:
-      - 3002:3002
+    mysql:
+        build: ./db_docker
+        environment:
+           # - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+            MYSQL_ROOT_PASSWORD: ''
+            MYSQL_DATABASE: goodreads
+        healthcheck:
+            test: "exit 0"
+    web:
+        build: .
+        depends_on:
+            mysql:
+                condition: service_healthy
+        ports:
+            - 3002:3002
+        environment:
+            WAIT_HOSTS: mysql:3306
+
+
+# version: "3"
+
+# services:
+#     db:
+#       image: mysql
+#       environment:
+#         MYSQL_ROOT_PASSWORD: null
+#         MYSQL_DATABASE: 'goodreads'
+#       ports:
+#         - "3306:3306"
+#     web:
+#       build: .
+#       depends_on:
+#         - mysql
+#       ports:
+#         - "3002:3002"
+
+
+
+#version: '2'
+#services:
+ # mysql:
+  #  container_name: flask_mysql
+   # restart: always
+    #image: mysql:latest
+    #environment:
+     # MYSQL_ROOT_PASSWORD: 'test_pass' # TODO: Change this
+      #MYSQL_USER: 'test'
+      #MYSQL_PASS: 'pass'
+    #volumes:
+     # - my-datavolume:/var/lib/mysql
+#volumes:
+ # my-datavolume:
+
+
+
+#mysqldb:
+#        image: mysql
+#         container_name: ${MYSQL_HOST}
+#         restart: always
+#         environment:
+#             - MYSQL_DATABASE=${MYSQL_DATABASE}
+#             - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+#             - MYSQL_USER=${MYSQL_USER}
+#             - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+#         ports:
+#             - "3306:3306"
+#         volumes:
+# - "./data/db/mysql:/var/lib/mysql"
+#https://stackoverflow.com/questions/47949221/separate-mysql-docker-container

@@ -1,9 +1,11 @@
 const Sequelize = require('sequelize');
 
-// MYSQL_ROOT_PASSWORD
-// MYSQL_DATABASE
-// MYSQL_PASSWORD
+// only need below line if using config
+// const { username, db, pw } = require('../config.js');
+
+
 const sequelize = new Sequelize('goodreads', 'root', null, {
+  host: '0.0.0.0',
   dialect: 'mysql',
 });
 
