@@ -4,8 +4,8 @@ const Sequelize = require('sequelize');
 // const { username, db, pw } = require('../config.js');
 
 
-const sequelize = new Sequelize('ebdb', 'jxb345', 'm0dernfam1ly', {
-  host: 'aa1q5qwihu6hila.cz8qk9vt5c1u.us-west-2.rds.amazonaws.com',
+const sequelize = new Sequelize('test-db', 'jxb345', 'm0dernfam1ly', {
+  host: 'test-db.cclabwvon2vx.us-west-1.rds.amazonaws.com',
   dialect: 'mysql',
 });
 
