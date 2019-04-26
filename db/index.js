@@ -4,7 +4,7 @@ const Sequelize = require('sequelize');
 // const { username, db, pw } = require('../config.js');
 
 
-const sequelize = new Sequelize('test-db', 'jxb345', 'm0dernfam1ly', {
+const sequelize = new Sequelize('goodreads', 'jxb345', 'm0dernfam1ly', {
   host: 'test-db.cclabwvon2vx.us-west-1.rds.amazonaws.com',
   dialect: 'mysql',
 });
