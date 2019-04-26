@@ -4,7 +4,8 @@ const app = express();
 const path = require('path');
 const cors = require('cors');
 const db = require('./db/models.js');
-
+// need below line only if using 'config' file
+// const { port } = require('./config.js');
 
 // app.use(express.static(path.join(__dirname, './client/public')));
 app.use('/:id', express.static(`${__dirname}/client/public`));
@@ -35,6 +36,8 @@ app.get('/book-item-hover-window', (req, res) => {
   });
 });
 
+// const port = ENV.process.PORT || 3002;
+
 app.listen(3002, () => {
-  console.log('listening at 3002');
+  console.log(`listening at 3002`);
 });

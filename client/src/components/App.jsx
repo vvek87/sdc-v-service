@@ -21,6 +21,7 @@ class App extends React.Component {
 
   getInfo(id) {
     $.ajax({
+      // change 'localhost' for deployment
       url: `http://localhost:3002/${id}`,
       method: 'POST',
       data: { bookId: id },
