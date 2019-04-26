@@ -37,7 +37,7 @@ class App extends React.Component {
   }
 
   getId() {
-    const id = Number(window.location.pathname.split('/')[1]);
+    const id = Number(window.location.pathname.split('/')[1]) || 0;
     console.log('id', id);
     return id;
   }

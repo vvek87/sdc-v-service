@@ -7,7 +7,7 @@ const db = require('./db/models.js');
 // need below line only if using 'config' file
 // const { port } = require('./config.js');
 
-// app.use(express.static(path.join(__dirname, './client/public')));
+app.use(express.static(path.join(__dirname, './client/public')));
 app.use('/:id', express.static(`${__dirname}/client/public`));
 app.use(express.urlencoded({ extended: false }));
 app.use(cors());

@@ -10,7 +10,7 @@
   "scripts": {
     "create-db": "npx sequelize db:create",
     "build": "webpack --w",
-    "start": "node ./index.js",
+    "start": "nodemon ./index.js",
     "seed": "npx knex seed:run",
     "test": "jest"
   },

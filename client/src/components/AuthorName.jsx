@@ -2,6 +2,8 @@ import React from 'react';
 import FollowButton from './FollowButton.jsx';
 import styled from 'styled-components';
 
+
+// general note: use 'em' or 'rem' instead of 'px' (considered best practice    )
 const Div = styled.div`
   display: flex;
   /* font-size:0; */
