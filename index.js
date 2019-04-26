@@ -15,7 +15,7 @@ app.use(cors());
 app.post('/:id', (req, res) => {
   const bookId = req.body.bookId;
   console.log('bookId', bookId);
-  db.getAuthorInfo(bookId, (err, results) => {
+  db.getAuthorInfo(22, (err, results) => {
     if (err) { throw err; }
     res.send(results);
   });
