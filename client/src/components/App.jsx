@@ -16,36 +16,26 @@ class App extends React.Component {
     };
 
     this.getInfo = this.getInfo.bind(this);
-    this.getId = this.getId.bind(this);
   }
 
-  getInfo(id) {
+  getInfo() {
+    const id = Number(window.location.pathname.split('/')[1]);
     $.ajax({
-      // change 'localhost' for deployment
-      url: `http://ec2-52-13-118-173.us-west-2.compute.amazonaws.com/${id}`,
-      method: 'POST',
-      data: { bookId: id },
+      // http://ec2-52-13-118-173.us-west-2.compute.amazonaws.com/
+      url: `http://localhost:3002/author/${id}`,
+      method: 'GET',
       success: (results) => {
         this.setState(
           {
             authorInfo: results,
-          }, () => {
-            console.log('this.state.authorInfo', this.state.authorInfo);
-          });
+          },
+        );
       },
     });
   }
 
-  getId() {
-    const id = Number(window.location.pathname.split('/')[1]) || 0;
-    console.log('id', id);
-    return id;
-  }
-
   componentDidMount() {
-    console.log('appl', App)
-    const id = this.getId();
-    this.getInfo(id);
+    this.getInfo();
   }
 
   render() {
