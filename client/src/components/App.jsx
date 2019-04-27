@@ -22,7 +22,7 @@ class App extends React.Component {
   getInfo(id) {
     $.ajax({
       // change 'localhost' for deployment
-      url: `http://localhost:3002/${id}`,
+      url: `http://ec2-52-13-118-173.us-west-2.compute.amazonaws.com/${id}`,
       method: 'POST',
       data: { bookId: id },
       success: (results) => {
