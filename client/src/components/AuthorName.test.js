@@ -19,17 +19,3 @@ describe('<AuthorName />', () => {
 
 
 });
-
-
-// const songLinkProps = {
-//   result: {
-//     id: '6rPO02ozF3bM7NnOV4h6s2',
-//     name: 'sf',
-//     artist: 'sgs'
-//   },
-//   handleClick: () => {
-//     console.log('click')
-//   }
-// }
-
-// const component = shallow(<SongLink {...songLinkProps} />)

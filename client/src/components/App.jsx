@@ -21,13 +21,14 @@ class App extends React.Component {
   getInfo() {
     const id = Number(window.location.pathname.split('/')[1]);
     $.ajax({
-      // http://ec2-52-13-118-173.us-west-2.compute.amazonaws.com/
-      url: `http://localhost:3002/author/${id}`,
+      url: `http://ec2-52-13-118-173.us-west-2.compute.amazonaws.com/author/${id}`,
       method: 'GET',
       success: (results) => {
         this.setState(
           {
             authorInfo: results,
+          }, () => {
+            console.log('authorInfolkjljl', this.state.authorInfo)
           },
         );
       },

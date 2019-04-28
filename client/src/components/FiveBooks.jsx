@@ -71,12 +71,12 @@ class FiveBooks extends React.Component {
   componentDidUpdate() {
     if (this.props.details !== undefined && this.state.details.length === 0) {
       this.setState({ details: this.props.details }, () => {
-        console.log('this.props.details', this.props.details);
+        console.log('this.state.details', this.state.details);
       });
     }
   }
 
-  renderReview (rating) {
+  renderReview(rating) {
     rating = Math.floor(rating);
 
     switch (rating) {
@@ -99,23 +99,27 @@ class FiveBooks extends React.Component {
   }
 
   render() {
+
     return (
       <div>
         <table>
-        {this.state.details.map(cover => <td data-tip data-for='bookDetailsPopup'><Image src={cover[0].cover_image}></Image>
-       <ToolTip><ReactTooltip delayHide={2000} id='bookDetailsPopup' place='bottom' type='light' data-multiline='true' data-border='true'>
- <span><Strong>{cover[0].title}</Strong><br></br><br></br>
- <Name>By: {this.props.name}</Name><br></br> <br></br>
- <Gray><Yellow>{this.renderReview(cover[0].average_rating)}</Yellow> avg rating - {cover[0].total_ratings} ratings - {cover[0].year}</Gray>
-   <br></br>
-   <WantButton>Want to Read  ▾</WantButton><span>  </span>Rate this book <Default>★★★★★</Default>
-   <br></br>
-   <br></br>
-   <br></br>
-   <PreviewButton>Open Preview</PreviewButton></span>
-</ReactTooltip></ToolTip></td>)}
+          {/* issue: the below 'map' function will display the last book title for all items within the table */}
+          {this.state.details.map(cover => <td data-tip data-for='bookDetailsPopup'><Image src={cover.cover_image}></Image>
+            <ToolTip>
+              <ReactTooltip delayHide={1000} id='bookDetailsPopup' place='bottom' type='light' data-multiline='true' data-border='true'>
+                <span><Strong>{cover.title}</Strong><br></br><br></br>
+                <Name>By: {this.props.name}</Name><br></br> <br></br>
+                <Gray><Yellow>{this.renderReview(cover.average_rating)}</Yellow> avg rating - {cover.total_ratings} ratings - {cover.year}</Gray>
+                <br></br>
+                <WantButton>Want to Read  ▾</WantButton><span>
+                </span>Rate this book <Default>★★★★★</Default>
+                <br></br>
+                <br></br>
+                <br></br>
+                <PreviewButton>Open Preview</PreviewButton></span>
+              </ReactTooltip>
+            </ToolTip></td>)}
         </table>
-
       </div>
 
     );
@@ -123,5 +127,3 @@ class FiveBooks extends React.Component {
 }
 
 export default FiveBooks;
-
-
