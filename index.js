@@ -23,5 +23,5 @@ app.get('/author/:id', (req, res) => {
 const port = process.env.PORT || 3002;
 
 app.listen(port, () => {
-  console.log(`listening at $${port}`);
+  console.log(`listening at ${port}`);
 });
