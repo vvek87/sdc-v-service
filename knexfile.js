@@ -1,13 +1,13 @@
-// Update with your config settings.
+require('dotenv').config();
 const path = require('path');
 
 module.exports = {
   development: {
     client: 'mysql',
     connection: {
-      host: 'test-db.cclabwvon2vx.us-west-1.rds.amazonaws.com',
-      user: 'jxb345',
-      password: 'm0dernfam1ly',
+      host: process.env.MYSQL_HOST,
+      user: process.env.MYSQL_USER,
+      password: process.MYSQL_ROOT_PASSWORD,
       database: 'goodreads',
     },
     migrations: {
