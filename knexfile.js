@@ -5,7 +5,7 @@ module.exports = {
   development: {
     client: 'mysql',
     connection: {
-      host: process.env.MYSQL_HOST,
+      host: 'test-db.cclabwvon2vx.us-west-1.rds.amazonaws.com',
       user: process.env.MYSQL_USER,
       password: process.MYSQL_ROOT_PASSWORD,
       database: 'goodreads',
