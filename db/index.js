@@ -2,8 +2,8 @@ require('dotenv').config();
 const Sequelize = require('sequelize');
 
 
-const sequelize = new Sequelize('goodreads', process.env.MYSQL_USER, process.env.MYSQL_ROOT_PASSWORD, {
-  host: process.env.MYSQL_HOST,
+const sequelize = new Sequelize('goodreads', 'jxb345', 'L052wM!n6b', {
+  host: 'test-db.cclabwvon2vx.us-west-1.rds.amazonaws.com',
   dialect: 'mysql',
 });
 
