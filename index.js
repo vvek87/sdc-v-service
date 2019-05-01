@@ -22,6 +22,7 @@ app.get('/author/:id', (req, res) => {
   const bookId = req.params.id;
   db.getAuthorInfo(bookId, (err, results) => {
     if (err) { throw err; }
+    res.header('Access-Control-Allow-Origin', '*');
     res.send(results);
   });
 });
