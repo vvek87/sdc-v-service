@@ -4,30 +4,33 @@ import styled from 'styled-components';
 
 
 // general note: use 'em' or 'rem' instead of 'px' (considered best practice    )
-const Div = styled.div`
+const Wrapper = styled.div`
   display: flex;
   /* font-size:0; */
 `;
 
-const Name = styled.p`
+const Name = styled.div`
   font-family: "Merriweather", "Georgia", serif;
-  font-size: 18px;
+  font-size: 20px;
   font-weight: bold;
-  /* float: left;
-  display: inline; */
+  /* float: left; */
+  /* display: inline; */
 `;
-const Followers = styled.p`
+const Followers = styled.div`
   color: #999999;
-  /* float: left;
-  display: inline; */
+  padding: 7px;
+  /* float: left; */
+  /* display: inline; */
 `;
 
 const AuthorImage = styled.img`
   border-radius: 50%;
-  height: 95px;
-  width: 80px;
-  /* display: inline;
-  float: left; */
+  height: 100px;
+  width: 100px;
+  padding-top: 5px;
+  padding-bottom: 10px;
+  /* display: inline; */
+  /* float: left; */
 `
 
 const Button = styled.button`
@@ -36,11 +39,12 @@ const Button = styled.button`
   border-radius: 3px;
   border: 1px solid #D6D0C4;
   font-family: "Lato", "Helvetica Neue", "Helvetica", sans-serif;
-  font-size: 14px;
-  padding-bottom: 8px;
-  padding-left: 12px;
-  padding-right: 12px;
-  padding-top: 8px;
+  font-size: 18px;
+  padding-bottom: 12px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 12px;
+  width: 175px;
 `;
 
 
@@ -49,14 +53,15 @@ class AuthorName extends React.Component {
     return (
 
       // consider: https://developer.mozilla.org/en-US/docs/Web/CSS/clear
-      <Div>
+      <Wrapper>
      <div>
       <AuthorImage src={this.props.pic}></AuthorImage>
+      <br></br>
       <Name>{this.props.name}</Name>
       <Followers>{this.props.followers} followers</Followers>
       <Button>Follow Author</Button>
       </div>
-      </Div>
+      </Wrapper>
 
     );
   }

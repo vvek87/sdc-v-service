@@ -1,7 +1,6 @@
 const ORM = require('./index.js');
 
 const getFiveBooks = (authorId, callback) => {
-  console.log('authorId', authorId);
   const fiveBooksQuery = `SELECT title FROM books WHERE author_id = ${authorId} ORDER BY average_rating LIMIT 5`;
   ORM.sequelize.query(fiveBooksQuery)
     .then(([results]) => {

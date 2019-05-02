@@ -27,8 +27,6 @@ class App extends React.Component {
         this.setState(
           {
             authorInfo: results,
-          }, () => {
-            console.log('authorInfolkjljl', this.state.authorInfo)
           },
         );
       },
@@ -40,7 +38,6 @@ class App extends React.Component {
   }
 
   render() {
-    console.log('this.state.authorInfo.titles', this.state.authorInfo.titles);
     return (
       <div>
         <AboutAuthorHeader name={this.state.authorInfo.name}></AboutAuthorHeader>
