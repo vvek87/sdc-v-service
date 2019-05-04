@@ -10,6 +10,7 @@ const Name = styled.span`
   font-size: 14px;
   text-transform: uppercase;
   padding: 2px 0;
+  font-weight: bold;
   /* border-bottom: 1px solid #D8D8D8; */
 `;
 

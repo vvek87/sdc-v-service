@@ -2,14 +2,14 @@ require('dotenv').config();
 const Sequelize = require('sequelize');
 
 
-const sequelize = new Sequelize('goodreads', 'jxb345', 'L052wM!n6b', {
-  host: 'test-db.cclabwvon2vx.us-west-1.rds.amazonaws.com',
-  dialect: 'mysql',
-});
-
-// const sequelize = new Sequelize('goodreads', 'root', '', {
+// const sequelize = new Sequelize('goodreads', 'jxb345', 'L052wM!n6b', {
+//   host: 'test-db.cclabwvon2vx.us-west-1.rds.amazonaws.com',
 //   dialect: 'mysql',
 // });
+
+const sequelize = new Sequelize('goodreads', 'root', '', {
+  dialect: 'mysql',
+});
 
 sequelize
   .authenticate()
