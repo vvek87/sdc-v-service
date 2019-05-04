@@ -25,8 +25,8 @@ const Followers = styled.div`
 
 const AuthorImage = styled.img`
   border-radius: 50%;
-  height: 100px;
-  width: 100px;
+  height: 90px;
+  width: 90px;
   padding-top: 5px;
   padding-bottom: 10px;
   /* display: inline; */
@@ -40,10 +40,10 @@ const Button = styled.button`
   border: 1px solid #D6D0C4;
   font-family: "Lato", "Helvetica Neue", "Helvetica", sans-serif;
   font-size: 18px;
-  padding-bottom: 12px;
+  padding-bottom: 10px;
   padding-left: 20px;
   padding-right: 20px;
-  padding-top: 12px;
+  padding-top: 10px;
   width: 175px;
 `;
 
