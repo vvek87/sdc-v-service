@@ -30,5 +30,5 @@ app.get('/author/:id', (req, res) => {
 const port = process.env.PORT || 3002;
 
 app.listen(3002, () => {
-  console.log(`listeninffg at ${port}`);
+  console.log(`listening at ${port}`);
 });

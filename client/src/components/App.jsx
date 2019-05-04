@@ -22,7 +22,7 @@ class App extends React.Component {
     const id = Number(window.location.pathname.split('/')[1]) || 1;
     console.log('id', id);
     $.ajax({
-      url: `ec2-54-214-128-238.us-west-2.compute.amazonaws.com/author/${id}`,
+      url: `/author/${id}`,
       method: 'GET',
       success: (results) => {
         this.setState(
