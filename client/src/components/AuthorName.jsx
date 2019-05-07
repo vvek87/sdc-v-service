@@ -40,10 +40,10 @@ const Button = styled.button`
   border: 1px solid #D6D0C4;
   font-family: "Lato", "Helvetica Neue", "Helvetica", sans-serif;
   font-size: 18px;
-  padding-bottom: 10px;
-  padding-left: 20px;
-  padding-right: 20px;
-  padding-top: 10px;
+  padding-bottom: 8px;
+  padding-left: 18px;
+  padding-right: 18px;
+  padding-top: 8px;
   width: 175px;
 `;
 
