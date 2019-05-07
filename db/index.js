@@ -1,11 +1,7 @@
+require('dotenv').config();
 const Sequelize = require('sequelize');
 
-// only need below line if using config
-// const { username, db, pw } = require('../config.js');
-
-
-const sequelize = new Sequelize('goodreads', 'root', null, {
-  host: '0.0.0.0',
+const sequelize = new Sequelize('goodreads', 'root', '', {
   dialect: 'mysql',
 });
 

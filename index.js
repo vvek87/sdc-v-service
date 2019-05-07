@@ -1,43 +1,34 @@
 const express = require('express');
+require('dotenv').config();
 
 const app = express();
 const path = require('path');
 const cors = require('cors');
 const db = require('./db/models.js');
-// need below line only if using 'config' file
-// const { port } = require('./config.js');
 
-// app.use(express.static(path.join(__dirname, './client/public')));
+
+app.use(express.static(path.join(__dirname, './client/public')));
 app.use('/:id', express.static(`${__dirname}/client/public`));
 app.use(express.urlencoded({ extended: false }));
 app.use(cors());
 
-app.post('/:id', (req, res) => {
-  const bookId = req.body.bookId;
-  console.log('bookId', bookId);
+// app.use(function(req, res, next) {
+//   res.header("Access-Control-Allow-Origin", "*");
+//   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+//   next();
+// });
+
+app.get('/author/:id', (req, res) => {
+  const bookId = req.params.id;
   db.getAuthorInfo(bookId, (err, results) => {
     if (err) { throw err; }
+    res.header('Access-Control-Allow-Origin', '*');
     res.send(results);
   });
 });
 
-// the below endpoint has been folded into the '/author' endpoint
-app.get('/five-books-by-author', (req, res) => {
-  db.getFiveBooks(46, (err, results) => {
-    if (err) { throw err; }
-    res.send(results);
-  });
-});
-
-app.get('/book-item-hover-window', (req, res) => {
-  db.getBookItemHoverWindow('Ergonomic Frozen Gloves', (err, results) => {
-    if (err) { throw err; }
-    res.send(results);
-  });
-});
-
-// const port = ENV.process.PORT || 3002;
+const port = process.env.PORT || 3002;
 
 app.listen(3002, () => {
-  console.log(`listening at 3002`);
+  console.log(`listening at ${port}`);
 });

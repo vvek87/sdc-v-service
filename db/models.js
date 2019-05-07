@@ -1,7 +1,6 @@
 const ORM = require('./index.js');
 
 const getFiveBooks = (authorId, callback) => {
-  console.log('authorId', authorId);
   const fiveBooksQuery = `SELECT title FROM books WHERE author_id = ${authorId} ORDER BY average_rating LIMIT 5`;
   ORM.sequelize.query(fiveBooksQuery)
     .then(([results]) => {
@@ -25,14 +24,12 @@ const getAuthorInfo = (bookId, callback) => {
     .then(([results]) => {
       const authorId = results[0].id;
       getFiveBooks(authorId, (err, books) => {
-        console.log('books', books)
         if (err) { throw err; }
-        // issue: the below query will only replace first element of books.title array
-        ORM.sequelize.query('SELECT title, total_ratings, average_rating, year, description, cover_image FROM books WHERE title = ?',
-          { replacements: books.titles }
-        ).then(details => {
+        ORM.sequelize.query('SELECT title, total_ratings, average_rating, year, description, cover_image FROM books WHERE title IN(:status)',
+          { replacements: { status: books.titles } },
+        ).then((details) => {
           results[0].titles = books.titles;
-          results[0].bookDetails = details;
+          results[0].bookDetails = details[0];
           callback(null, results[0]);
         })
       });

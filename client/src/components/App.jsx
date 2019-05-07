@@ -16,40 +16,29 @@ class App extends React.Component {
     };
 
     this.getInfo = this.getInfo.bind(this);
-    this.getId = this.getId.bind(this);
   }
 
-  getInfo(id) {
+  getInfo() {
+    const id = Number(window.location.pathname.split('/')[1]) || 1;
+    console.log('id', id);
     $.ajax({
-      // change 'localhost' for deployment
-      url: `http://localhost:3002/${id}`,
-      method: 'POST',
-      data: { bookId: id },
+      url: `http://54.214.128.238/author/${id}`,
+      method: 'GET',
       success: (results) => {
         this.setState(
           {
             authorInfo: results,
-          }, () => {
-            console.log('this.state.authorInfo', this.state.authorInfo);
-          });
+          },
+        );
       },
     });
   }
 
-  getId() {
-    const id = Number(window.location.pathname.split('/')[1]);
-    console.log('id', id);
-    return id;
-  }
-
   componentDidMount() {
-    console.log('appl', App)
-    const id = this.getId();
-    this.getInfo(id);
+    this.getInfo();
   }
 
   render() {
-    console.log('this.state.authorInfo.titles', this.state.authorInfo.titles);
     return (
       <div>
         <AboutAuthorHeader name={this.state.authorInfo.name}></AboutAuthorHeader>

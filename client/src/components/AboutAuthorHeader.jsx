@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Paragraph = styled.p`
+const Paragraph = styled.span`
   color: #382110;
   font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
   height: 24px;
@@ -16,9 +16,9 @@ const Paragraph = styled.p`
 const HR = styled.hr`
     display: block;
     height: 1px;
-    border: 0;
+    /* border: 0; */
     border-top: 1px solid #D8D8D8;
-    margin: 1em 0;
+    margin: 0.5em 0;
     padding: 0;
     width: 400px;
 `;
@@ -28,6 +28,7 @@ class AboutAuthorHeader extends React.Component {
     return (
       <div>
       <Paragraph>About {this.props.name}</Paragraph>
+      {/* <div style="float: clear"></div> */}
       <HR></HR>
       </div>
     );
