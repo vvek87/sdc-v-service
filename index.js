@@ -1,4 +1,5 @@
 const express = require('express');
+const morgan = require('morgan');
 require('dotenv').config();
 
 const app = express();
@@ -6,6 +7,7 @@ const path = require('path');
 const cors = require('cors');
 const db = require('./db/models.js');
 
+app.use(morgan('tiny'));
 
 app.use(express.static(path.join(__dirname, './client/public')));
 app.use('/:id', express.static(`${__dirname}/client/public`));
@@ -26,6 +28,21 @@ app.get('/author/:id', (req, res) => {
     res.send(results);
   });
 });
+
+// CRUD implementations for SDC
+
+app.delete('/delete/:id', (req, res) => {
+  const deleteId = req.params.id;
+  db.deleteById(deleteId, (err) => {
+    if (err) {
+      console.log('delete by id server error');
+      res.send(500);
+    }
+    res.header('Access-Control-Allow-Origin', '*');
+    res.send(200);
+  });
+});
+
 
 const port = process.env.PORT || 3002;
 
