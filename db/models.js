@@ -53,6 +53,33 @@ const getBookItemHoverWindow = (bookId, callback) => {
     });
 };
 
-exports.getAuthorInfo = getAuthorInfo;
-exports.getFiveBooks = getFiveBooks;
-exports.getBookItemHoverWindow = getBookItemHoverWindow;
+// CRUD implementations for SDC
+
+const deleteById = (id, callback) => {
+  const deleteBooks = `DELETE FROM books WHERE author_id = ${id}`;
+  const deleteAuthor = `DELETE FROM authors WHERE id = ${id}`;
+  ORM.sequelize.query(deleteBooks)
+    .then(([bookResults]) => {
+      console.log('delete book affected rows: ', bookResults.affectedRows);
+      return ORM.sequelize.query(deleteAuthor)
+        .then(([authResults]) => {
+          console.log('delete author affected rows: ', authResults.affectedRows);
+          callback(null);
+        })
+        .catch((err) => {
+          console.log('delete author error', err);
+          callback(err);
+        });
+    })
+    .catch((err) => {
+      console.log('delete books error', err);
+      callback(err);
+    });
+};
+
+module.exports = {
+  getAuthorInfo,
+  getFiveBooks,
+  getBookItemHoverWindow,
+  deleteById,
+};

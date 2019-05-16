@@ -25,5 +25,3 @@ exports.seed = (knex) => {
       return knex('books').insert(fakeBooks);
     });
 };
-
-
