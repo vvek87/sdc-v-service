@@ -59,15 +59,15 @@ const deleteById = (id, callback) => {
   const deleteBooks = `DELETE FROM books WHERE author_id = ${id}`;
   const deleteAuthor = `DELETE FROM authors WHERE id = ${id}`;
   ORM.sequelize.query(deleteBooks)
-    .then(([bookResults, metadata]) => {
-      console.log(bookResults, metadata);
+    .then(([bookResults]) => {
+      console.log('delete book affected rows: ', bookResults.affectedRows);
       return ORM.sequelize.query(deleteAuthor)
-        .then(([authorResults, data]) => {
-          console.log([authorResults, data]);
+        .then(([authResults]) => {
+          console.log('delete author affected rows: ', authResults.affectedRows);
           callback(null);
         })
         .catch((err) => {
-          console.log('delete books error', err);
+          console.log('delete author error', err);
           callback(err);
         });
     })
@@ -77,7 +77,9 @@ const deleteById = (id, callback) => {
     });
 };
 
-exports.getAuthorInfo = getAuthorInfo;
-exports.getFiveBooks = getFiveBooks;
-exports.getBookItemHoverWindow = getBookItemHoverWindow;
-exports.deleteById = deleteById;
+module.exports = {
+  getAuthorInfo,
+  getFiveBooks,
+  getBookItemHoverWindow,
+  deleteById,
+};

@@ -38,7 +38,6 @@ app.delete('/delete/:id', (req, res) => {
       console.log('delete by id server error');
       res.send(500);
     }
-    res.header('Access-Control-Allow-Origin', '*');
     res.send(200);
   });
 });
