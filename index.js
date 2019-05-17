@@ -43,6 +43,17 @@ app.delete('/delete/:id', (req, res) => {
 });
 
 
+app.post('/create', (req, res) => { // take note of front end results if using new id such as 101 in url
+  db.addAuthorAndBook((err) => {
+    if (err) {
+      console.log('add new author server error');
+      res.send(500);
+    }
+    res.send(200);
+  });
+});
+
+
 const port = process.env.PORT || 3002;
 
 app.listen(3002, () => {
