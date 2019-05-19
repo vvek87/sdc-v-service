@@ -79,36 +79,12 @@ const deleteById = (id, callback) => {
     });
 };
 
-// use for now
-const createFakeAuthors = () => ({
-  name: faker.name.findName(),
-  followers: faker.random.number(),
-  biography: faker.lorem.paragraph(),
-  author_image: faker.image.people(),
-  createdAt: moment(faker.date.past()).format('YYYY-MM-DD HH-mm-ss'),
-  updatedAt: moment(faker.date.past()).format('YYYY-MM-DD HH-mm-ss'),
-});
-
-const createFakeBooks = () => ({
-  title: faker.commerce.productName(),
-  year: faker.random.number({ min: 1900, max: 2019 }),
-  total_ratings: faker.random.number(),
-  average_rating: faker.random.number({ min: 1, max: 5 }),
-  description: faker.lorem.paragraph(),
-  cover_image: faker.image.city(),
-  author_id: faker.random.number({ min: 1, max: 100 }),
-  createdAt: moment(faker.date.past()).format('YYYY-MM-DD HH-mm-ss'),
-  updatedAt: moment(faker.date.past()).format('YYYY-MM-DD HH-mm-ss'),
-});
-
-const addAuthorAndBook = (callback) => {
-  const author = createFakeAuthors();
-  const book = createFakeBooks();
+const addAuthorAndBook = (author, book, callback) => {
   const authorQuery = `INSERT INTO authors (name, followers, biography, author_image, createdAt, updatedAt) VALUES ('${author.name}', '${author.followers}', '${author.biography}', '${author.author_image}', '${author.createdAt}', '${author.updatedAt}')`;
-  const bookQuery = `INSERT INTO books (title, year, total_ratings, average_rating, description, cover_image, author_id, createdAt, updatedAt) VALUES ('${book.title}', '${book.year}', '${book.total_ratings}', '${book.average_rating}', '${book.description}', '${book.cover_image}', '${book.author_id}', '${book.createdAt}', '${book.updatedAt}')`;
   ORM.sequelize.query(authorQuery)
-    .then(([addResults]) => {
-      console.log('add new author results: ', addResults);
+    .then(([authResults]) => {
+      console.log('add new author results: ', authResults);
+      const bookQuery = `INSERT INTO books (title, year, total_ratings, average_rating, description, cover_image, author_id, createdAt, updatedAt) VALUES ('${book.title}', '${book.year}', '${book.total_ratings}', '${book.average_rating}', '${book.description}', '${book.cover_image}', '${authResults}', '${book.createdAt}', '${book.updatedAt}')`;
       return ORM.sequelize.query(bookQuery)
         .then(([bookResults]) => {
           console.log('add new book results: ', bookResults);
@@ -125,10 +101,24 @@ const addAuthorAndBook = (callback) => {
     });
 };
 
+const updateById = (id, author, callback) => {
+  const updateQuery = `UPDATE authors SET name='${author.name}', followers='${author.followers}', biography='${author.biography}', author_image='${author.author_image}', createdAt='${author.createdAt}', updatedAt='${author.updatedAt}' WHERE id=${id}`;
+  ORM.sequelize.query(updateQuery)
+    .then(([results]) => {
+      console.log('update by id results: ', results.affectedRows);
+      callback(null);
+    })
+    .catch((err) => {
+      console.log('update by id error: ', err);
+      callback(err);
+    });
+};
+
 module.exports = {
   getAuthorInfo,
   getFiveBooks,
   getBookItemHoverWindow,
   deleteById,
   addAuthorAndBook,
+  updateById,
 };

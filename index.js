@@ -6,6 +6,7 @@ const app = express();
 const path = require('path');
 const cors = require('cors');
 const db = require('./db/models.js');
+const genData = require('./db/genData.js');
 
 app.use(morgan('tiny'));
 
@@ -42,9 +43,10 @@ app.delete('/delete/:id', (req, res) => {
   });
 });
 
-
 app.post('/create', (req, res) => { // take note of front end results if using new id such as 101 in url
-  db.addAuthorAndBook((err) => {
+  const author = genData.createFakeAuthors();
+  const book = genData.createFakeBooks();
+  db.addAuthorAndBook(author, book, (err) => {
     if (err) {
       console.log('add new author server error');
       res.send(500);
@@ -53,6 +55,17 @@ app.post('/create', (req, res) => { // take note of front end results if using n
   });
 });
 
+app.put('/update/:id', (req, res) => {
+  const updateId = req.params.id;
+  const author = genData.createFakeAuthors();
+  db.updateById(updateId, author, (err) => {
+    if (err) {
+      console.log('update by id server error');
+      res.send(500);
+    }
+    res.send(200);
+  });
+});
 
 const port = process.env.PORT || 3002;
 
