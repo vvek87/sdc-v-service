@@ -1,8 +1,9 @@
 require('dotenv').config();
 const Sequelize = require('sequelize');
 
-const sequelize = new Sequelize('goodreads', 'root', '', {
-  dialect: 'mysql',
+const sequelize = new Sequelize('goodreads', 'postgres', 'pass', {
+  host: 'localhost',
+  dialect: 'postgres',
 });
 
 sequelize

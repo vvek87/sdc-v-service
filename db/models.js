@@ -1,5 +1,3 @@
-const faker = require('faker');
-const moment = require('moment');
 const ORM = require('./index.js');
 
 const getFiveBooks = (authorId, callback) => {

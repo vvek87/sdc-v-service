@@ -3,10 +3,10 @@ const path = require('path');
 
 module.exports = {
   development: {
-    client: 'mysql',
+    client: 'postgres',
     connection: {
-      user: 'root',
-      password: '',
+      user: 'postgres',
+      password: 'pass',
       database: 'goodreads',
     },
     migrations: {
