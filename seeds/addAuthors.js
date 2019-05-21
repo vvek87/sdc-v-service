@@ -13,11 +13,14 @@ exports.seed = (knex) => {
   // Deletes ALL existing entries
   return knex('authors').del()
     .then(() => {
+      const startAuthorsTimer = Date.now(); // start timer
       const authors = [];
-      const desiredAuthors = 100;
+      const desiredAuthors = 1000000;
       for (let i = 0; i < desiredAuthors; i += 1) {
         authors.push(createFakeAuthors());
       }
-      return knex('authors').insert(authors);
+      const milliseconds = Date.now() - startAuthorsTimer; // end timer
+      console.log('TIME FOR AUTHORS: ', Number.parseFloat(milliseconds / 1000).toFixed(2), ' seconds');
+      return knex.batchInsert('authors', authors, 5000);
     });
 };

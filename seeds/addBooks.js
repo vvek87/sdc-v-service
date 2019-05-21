@@ -1,5 +1,7 @@
 const faker = require('faker');
 
+const records = 1000000;
+
 const createFakeBooks = () => ({
   title: faker.commerce.productName(),
   year: faker.random.number({ min: 1900, max: 2019 }),
@@ -7,21 +9,22 @@ const createFakeBooks = () => ({
   average_rating: faker.random.number({ min: 1, max: 5 }),
   description: faker.lorem.paragraph(),
   cover_image: faker.image.city(),
-  author_id: faker.random.number({ min: 1, max: 100 }),
+  author_id: faker.random.number({ min: 1, max: records }),
   createdAt: faker.date.past(),
   updatedAt: faker.date.past(),
 });
 
 exports.seed = (knex) => {
-  // Deletes ALL existing entries
   return knex('books').del()
     .then(() => {
+      const startBooksTimer = Date.now(); // start timer
       const fakeBooks = [];
-      const desiredBooks = 100;
+      const desiredBooks = records;
       for (let i = 0; i < desiredBooks; i += 1) {
         fakeBooks.push(createFakeBooks());
       }
-      // Inserts seed entries
-      return knex('books').insert(fakeBooks);
+      const milliseconds = Date.now() - startBooksTimer; // end timer
+      console.log('TIME FOR BOOKS: ', Number.parseFloat(milliseconds / 1000).toFixed(2), ' seconds');
+      return knex.batchInsert('books', fakeBooks, 5000);
     });
 };
