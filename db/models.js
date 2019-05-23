@@ -1,3 +1,5 @@
+const faker = require('faker');
+const moment = require('moment');
 const ORM = require('./index.js');
 
 const getFiveBooks = (authorId, callback) => {
@@ -77,9 +79,46 @@ const deleteById = (id, callback) => {
     });
 };
 
+const addAuthorAndBook = (author, book, callback) => {
+  const authorQuery = `INSERT INTO authors (name, followers, biography, author_image, createdAt, updatedAt) VALUES ('${author.name}', '${author.followers}', '${author.biography}', '${author.author_image}', '${author.createdAt}', '${author.updatedAt}')`;
+  ORM.sequelize.query(authorQuery)
+    .then(([authResults]) => {
+      console.log('add new author results: ', authResults);
+      const bookQuery = `INSERT INTO books (title, year, total_ratings, average_rating, description, cover_image, author_id, createdAt, updatedAt) VALUES ('${book.title}', '${book.year}', '${book.total_ratings}', '${book.average_rating}', '${book.description}', '${book.cover_image}', '${authResults}', '${book.createdAt}', '${book.updatedAt}')`;
+      return ORM.sequelize.query(bookQuery)
+        .then(([bookResults]) => {
+          console.log('add new book results: ', bookResults);
+          callback(null);
+        })
+        .catch((err) => {
+          console.log('error new adding book: ', err);
+          callback(err);
+        });
+    })
+    .catch((err) => {
+      console.log('error adding new author', err);
+      callback(err);
+    });
+};
+
+const updateById = (id, author, callback) => {
+  const updateQuery = `UPDATE authors SET name='${author.name}', followers='${author.followers}', biography='${author.biography}', author_image='${author.author_image}', createdAt='${author.createdAt}', updatedAt='${author.updatedAt}' WHERE id=${id}`;
+  ORM.sequelize.query(updateQuery)
+    .then(([results]) => {
+      console.log('update by id results: ', results.affectedRows);
+      callback(null);
+    })
+    .catch((err) => {
+      console.log('update by id error: ', err);
+      callback(err);
+    });
+};
+
 module.exports = {
   getAuthorInfo,
   getFiveBooks,
   getBookItemHoverWindow,
   deleteById,
+  addAuthorAndBook,
+  updateById,
 };

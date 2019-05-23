@@ -43,51 +43,21 @@ An `nvmrc` file is included if using [nvm](https://github.com/creationix/nvm).
 
 ## API Endpoints
 
-**URL:** /author<br>
-**Description:** This example retrieves an author's name, number of follwers, and a biography.<br>
-**API Response:**<br>
-```
-{
-  "name":"Rosalinda Kutch IV",
-  "followers":91593,
-  "biography":"Sunt sed vitae aliquid. Qui libero
-  et explicabo maxime veritatis asperiores quia et
-  mollitia. Dolor ipsam   laboriosam libero tempore."
-  "author_image": '[link to image]'
-}
+**URL:** /create<br>
+**Description:** CREATE an author and a book associated with that author and inserts into db<br>
+**API Response:** 200 or 500<br>
 
-```
+**URL:** /author/:id<br>
+**Description:** Uses input id from url or 1 to READ an author and their associated books from the db <br>
+**API Response:** 200 and an object with author/book info or 500<br>
 
-**URL:** /five-books-by-author<br>
-**Description:** This example retrives a maximum of five books written by an author.<br>
-**API Response:**<br>
-```
-{
-  "titles":
-  [
-    "Licensed Rubber Cheese",
-  "Incredible Frozen Pants",
-  "Handcrafted Wooden Bike",
-  "Practical Steel Pizza",
-  "Incredible Wooden Sausages"
-  ]
-}
+**URL:** /update/:id<br>
+**Description:** Grabs input id from url or 1 and generates a new author to UPDATE the existing author in db with that id<br>
+**API Response:** 200 or 500<br>
 
+**URL:** /delete/:id<br>
+**Description:** Grabs input id from url or 1 and deletes an author and books from the db associated with that id<br>
+**API Response:** 200 or 500<br>
 ```
 
-**URL:** book-item-hover-window<br>
-**Description:** This example retrieves a book's title, total number<br>
-of ratings, the average rating, the year of publication, and a description of the book.<br>
-**API Response:**<br>
-```
-{<br>
-  "title":"Handcrafted Rubber Table",
-  "total_ratings":18274,
-  "average_ratings":"4",
-  "year":2007,
-  "description":"Eum hic dolorem. Illum omnis tenetur atque
-  iusto non. Iste placeat et amet cupiditate quo."
-}
-
-```
 # New Document
