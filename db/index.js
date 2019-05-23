@@ -4,6 +4,9 @@ const Sequelize = require('sequelize');
 const sequelize = new Sequelize('goodreads', 'postgres', 'pass', {
   host: 'localhost',
   dialect: 'postgres',
+  define: {
+    timestamps: false,
+  },
 });
 
 sequelize
@@ -39,17 +42,11 @@ const Books = sequelize.define('books', {
   average_rating: Sequelize.DECIMAL,
   description: Sequelize.TEXT,
   cover_image: Sequelize.TEXT,
-  author_id: {
-    type: Sequelize.INTEGER,
-    references: {
-      model: Authors,
-      key: 'id',
-    },
-  },
+  author_id: Sequelize.INTEGER,
 });
 
 // need to add and/or fix associations
-Books.belongsTo(Authors);
+// Books.belongsTo(Authors);
 
 Authors.sync();
 Books.sync();
