@@ -24,6 +24,8 @@ const createFakeAuthors = (id) => ({
 // };
 
 
+// "seed": "npx knex seed:run",  package.json old seed script
+
 
 exports.seed = (knex) => {
   // Deletes ALL existing entries

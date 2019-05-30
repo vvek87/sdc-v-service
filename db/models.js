@@ -21,7 +21,6 @@ const getFiveBooks = (authorId, callback) => {
 // consider changing the first query string to only target the authors table???
 const getAuthorInfo = (bookId, callback) => {
   const authorQuery = `SELECT id, name, followers, biography, author_image FROM authors WHERE id IN (SELECT author_id FROM books WHERE id = ${bookId})`;
-  // const authorQuery = `SELECT id, name, followers, biography, author_image FROM authors WHERE id = ${bookId}`;
   ORM.sequelize.query(authorQuery)
     .then(([results]) => {
       const authorId = results[0].id;
@@ -86,12 +85,10 @@ const deleteById = (id, callback) => {
 };
 
 const addAuthorAndBook = (author, book, callback) => {
-  // const authorQuery = `INSERT INTO authors (name, followers, biography, author_image, createdAt, updatedAt) VALUES ('${author.name}', '${author.followers}', '${author.biography}', '${author.author_image}', '${author.createdAt}', '${author.updatedAt}')`;
   const authorQuery = `INSERT INTO authors (name, followers, biography, author_image) VALUES ('${author.name}', '${author.followers}', '${author.biography}', '${author.author_image}')`;
   ORM.sequelize.query(authorQuery)
     .then(([authResults]) => {
       console.log('add new author results: ', authResults);
-      // const bookQuery = `INSERT INTO books (title, year, total_ratings, average_rating, description, cover_image, author_id, createdAt, updatedAt) VALUES ('${book.title}', '${book.year}', '${book.total_ratings}', '${book.average_rating}', '${book.description}', '${book.cover_image}', '${authResults}', '${book.createdAt}', '${book.updatedAt}')`;
       const bookQuery = `INSERT INTO books (title, year, total_ratings, average_rating, description, cover_image, author_id) VALUES ('${book.title}', '${book.year}', '${book.total_ratings}', '${book.average_rating}', '${book.description}', '${book.cover_image}', '${authResults}')`;
       return ORM.sequelize.query(bookQuery)
         .then(([bookResults]) => {
@@ -110,7 +107,6 @@ const addAuthorAndBook = (author, book, callback) => {
 };
 
 const updateById = (id, author, callback) => {
-  // const updateQuery = `UPDATE authors SET name='${author.name}', followers='${author.followers}', biography='${author.biography}', author_image='${author.author_image}', createdAt='${author.createdAt}', updatedAt='${author.updatedAt}' WHERE id=${id}`;
   const updateQuery = `UPDATE authors SET name='${author.name}', followers='${author.followers}', biography='${author.biography}', author_image='${author.author_image}' WHERE id=${id}`;
   ORM.sequelize.query(updateQuery)
     .then(([results]) => {
