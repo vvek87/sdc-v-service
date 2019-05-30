@@ -24,7 +24,10 @@ app.use(cors());
 app.get('/author/:id', (req, res) => {
   const bookId = req.params.id;
   db.getAuthorInfo(bookId, (err, results) => {
-    if (err) { throw err; }
+    if (err) {
+      console.log('Get author and books by id error: ', err);
+      res.send(404);
+    }
     res.header('Access-Control-Allow-Origin', '*');
     res.send(results);
   });

@@ -25,7 +25,6 @@ class App extends React.Component {
       url: `http://localhost:3002/author/${id}`,
       method: 'GET',
       success: (results) => {
-        console.log('RESULTS FOR GET----', results)
         this.setState(
           {
             authorInfo: results,

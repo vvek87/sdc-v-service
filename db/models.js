@@ -18,16 +18,24 @@ const getFiveBooks = (authorId, callback) => {
     });
 };
 
+// consider changing the first query string to only target the authors table???
 const getAuthorInfo = (bookId, callback) => {
   const authorQuery = `SELECT id, name, followers, biography, author_image FROM authors WHERE id IN (SELECT author_id FROM books WHERE id = ${bookId})`;
+  // const authorQuery = `SELECT id, name, followers, biography, author_image FROM authors WHERE id = ${bookId}`;
   ORM.sequelize.query(authorQuery)
     .then(([results]) => {
       const authorId = results[0].id;
       getFiveBooks(authorId, (err, books) => {
-        if (err) { throw err; }
+        if (err) {
+          console.log('5 books error: ', err);
+          throw err;
+        }
         ORM.sequelize.query('SELECT title, total_ratings, average_rating, year, description, cover_image FROM books WHERE title IN(:status)',
           { replacements: { status: books.titles } },
         ).then((details) => {
+          if (details[0].length > 5) { // added this to limit books by author to 5
+            details[0] = details[0].splice(0, 5);
+          }
           results[0].titles = books.titles;
           results[0].bookDetails = details[0];
           callback(null, results[0]);
