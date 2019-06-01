@@ -1,10 +1,10 @@
 const faker = require('faker');
 const fastcsv = require('fast-csv'); // for testing csv
-const fs = require('fs'); // for testing csv
+const fs = require('fs');
 
-const ws = fs.createWriteStream('authors.csv'); // for testing csv
+const ws = fs.createWriteStream('authors.csv');
 
-const createFakeAuthors = (id) => ({
+const createFakeAuthors = id => ({
   id,
   name: faker.name.findName(),
   followers: faker.random.number(),

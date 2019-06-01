@@ -6,7 +6,7 @@ const ws = fs.createWriteStream('books.csv'); // for testing csv
 
 const records = 5000;
 
-const createFakeBooks = (id) => ({
+const createFakeBooks = id => ({
   id,
   title: faker.commerce.productName(),
   year: faker.random.number({ min: 1900, max: 2019 }),

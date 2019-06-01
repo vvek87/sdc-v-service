@@ -84,7 +84,7 @@ const deleteById = (id, callback) => {
     });
 };
 
-const addAuthorAndBook = (author, book, callback) => {
+const addAuthorAndBook = (author, book, callback) => { // update to reflect new id column
   const authorQuery = `INSERT INTO authors (name, followers, biography, author_image) VALUES ('${author.name}', '${author.followers}', '${author.biography}', '${author.author_image}')`;
   ORM.sequelize.query(authorQuery)
     .then(([authResults]) => {
