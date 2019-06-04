@@ -1,56 +1,94 @@
 require('dotenv').config();
-const Sequelize = require('sequelize');
+const mongoose = require('mongoose');
 
-const sequelize = new Sequelize('goodreads', 'postgres', 'pass', {
-  host: 'localhost',
-  dialect: 'postgres',
-  define: {
-    timestamps: false,
-  },
+const fakeAuthor = require('./genData').createFakeAuthors;
+const fakeBook = require('./genData').createFakeBooks;
+
+mongoose.connect('mongodb://localhost:27017/goodreads', { useNewUrlParser: true });
+const db = mongoose.connection;
+
+db.on('error', () => {
+  console.log('Error connecting to mongo db');
+});
+db.once('open', () => {
+  console.log('Connected to mongo db');
 });
 
-sequelize
-  .authenticate()
-  .then(() => {
-    console.log('connection connected!');
-  })
-  .catch((err) => {
-    console.error('unable to connect to db', err);
-  });
-
-const Authors = sequelize.define('authors', {
-  id: {
-    autoIncrement: true,
-    type: Sequelize.INTEGER,
-    primaryKey: true,
-  },
-  name: Sequelize.STRING,
-  followers: Sequelize.INTEGER,
-  biography: Sequelize.TEXT,
-  author_image: Sequelize.STRING,
+const authorSchema = new mongoose.Schema({
+  _id: Number,
+  name: String,
+  followers: Number,
+  biography: String,
+  author_image: String,
 });
 
-const Books = sequelize.define('books', {
-  id: {
-    autoIncrement: true,
-    type: Sequelize.INTEGER,
-    primaryKey: true,
-  },
-  title: Sequelize.STRING,
-  year: Sequelize.INTEGER,
-  total_ratings: Sequelize.INTEGER,
-  average_rating: Sequelize.DECIMAL,
-  description: Sequelize.TEXT,
-  cover_image: Sequelize.TEXT,
-  author_id: Sequelize.INTEGER,
+const bookSchema = new mongoose.Schema({
+  _id: Number,
+  title: String,
+  year: Number,
+  total_ratings: Number,
+  average_rating: Number,
+  description: String,
+  cover_image: String,
+  author_id: Number,
 });
 
-// need to add and/or fix associations
-// Books.belongsTo(Authors);
+const Author = mongoose.model('author', authorSchema);
+const Book = mongoose.model('book', bookSchema);
 
-Authors.sync();
-Books.sync();
+let id = 1;
+let bookId = 1;
 
-exports.Authors = Authors;
-exports.Books = Books;
-exports.sequelize = sequelize;
+let authRecords = [];
+let bookRecords = [];
+
+console.log('Execution timer started...');
+const startTimer = Date.now(); // start timer
+
+
+const seedAuthors = (i) => {
+  if (id <= 10000000) {
+    for (let k = 0; k < 100000; k += 1) {
+      authRecords.push(fakeAuthor(id));
+      id += 1;
+    }
+    try {
+      db.collection('authors').insertMany(authRecords)
+        .then(() => {
+          authRecords = [];
+          seedAuthors(i + 1);
+        });
+    } catch (error) {
+      console.log('Error inserting records: ', error);
+    }
+  } else {
+    return;
+  }
+};
+
+seedAuthors(0);
+
+
+const seedBooks = (i) => {
+  if (bookId <= 30000000) {
+    for (let j = 0; j < 100000; j += 1) {
+      bookRecords.push(fakeBook(bookId));
+      bookId += 1;
+    }
+    try {
+      db.collection('books').insertMany(bookRecords)
+        .then(() => {
+          bookRecords = [];
+          seedBooks(i + 1);
+        });
+    } catch (error) {
+      console.log('Error inserting records: ', error);
+    }
+  } else {
+    const milliseconds = Date.now() - startTimer; // end timer
+    console.log('Execution done after: ', Number.parseFloat(milliseconds / 60000).toFixed(2), ' minutes');
+    return;
+  }
+};
+
+seedBooks(0);
