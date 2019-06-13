@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 require('dotenv').config();
 
-mongoose.connect('mongodb://localhost:27017/goodreads', { useNewUrlParser: true });
+mongoose.connect('mongodb://localhost:27017/goodreads', { useNewUrlParser: true, autoIndex: false });
 const db = mongoose.connection;
 
 db.on('error', () => {
@@ -22,6 +22,17 @@ const authorSchema = new mongoose.Schema({
 });
 
 const Author = mongoose.model('author', authorSchema);
+
+let nextAuthorId;
+
+Author.estimatedDocumentCount({}, (error, lastId) => {
+  if (error) {
+    console.log('Error finding next _id value: ', error);
+  } else {
+    nextAuthorId = lastId;
+    console.log('Next _id value is : ', nextAuthorId);
+  }
+});
 
 
 const getAuthorInfo = (authId, callback) => {
@@ -54,20 +65,15 @@ const deleteById = (id, callback) => {
 };
 
 const addAuthorAndBook = (author, callback) => {
-  Author.estimatedDocumentCount({}, (error, lastId) => {
-    if (error) {
-      console.log('Error finding next _id value: ', error);
+  nextAuthorId += 1;
+  author._id = nextAuthorId;
+  Author.create(author, (err) => {
+    if (err) {
+      console.log('Create author and books error: ', err);
+      callback(err);
     } else {
-      author._id = lastId + 1;
-      Author.create(author, (err) => {
-        if (err) {
-          console.log('Create author and books error: ', err);
-          callback(err);
-        } else {
-          console.log('Successfully created author and books');
-          callback(null);
-        }
-      });
+      console.log('Successfully created author and books');
+      callback(null);
     }
   });
 };
