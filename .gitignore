@@ -27,3 +27,5 @@ dist/
 # enviromental variables
 .env
 
+# new relic license key
+newrelic.js
