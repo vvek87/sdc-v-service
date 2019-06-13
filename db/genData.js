@@ -1,14 +1,4 @@
 const faker = require('faker');
-const moment = require('moment');
-
-const createFakeAuthors = () => ({
-  name: faker.name.findName(),
-  followers: faker.random.number(),
-  biography: faker.lorem.paragraph(),
-  author_image: faker.image.people(),
-  createdAt: moment(faker.date.past()).format('YYYY-MM-DD HH-mm-ss'),
-  updatedAt: moment(faker.date.past()).format('YYYY-MM-DD HH-mm-ss'),
-});
 
 const createFakeBooks = () => ({
   title: faker.commerce.productName(),
@@ -17,10 +7,23 @@ const createFakeBooks = () => ({
   average_rating: faker.random.number({ min: 1, max: 5 }),
   description: faker.lorem.paragraph(),
   cover_image: faker.image.city(),
-  author_id: faker.random.number({ min: 1, max: 100 }),
-  createdAt: moment(faker.date.past()).format('YYYY-MM-DD HH-mm-ss'),
-  updatedAt: moment(faker.date.past()).format('YYYY-MM-DD HH-mm-ss'),
 });
+
+const createFakeAuthors = (id) => {
+  const author = {
+    _id: id,
+    name: faker.name.findName(),
+    followers: faker.random.number(),
+    biography: faker.lorem.paragraph(),
+    author_image: faker.image.people(),
+    books: [],
+  };
+
+  for (let i = 1; i <= faker.random.number({ min: 1, max: 5 }); i += 1) {
+    author.books.push(createFakeBooks());
+  }
+  return author;
+};
 
 module.exports = {
   createFakeAuthors,
