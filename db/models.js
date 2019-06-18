@@ -2,11 +2,12 @@ const mongoose = require('mongoose');
 
 require('dotenv').config();
 
+// change url to aws ec2 if needed
 mongoose.connect('mongodb://localhost:27017/goodreads', { useNewUrlParser: true, autoIndex: false });
 const db = mongoose.connection;
 
-db.on('error', () => {
-  console.log('Error connecting to mongo db');
+db.on('error', (err) => {
+  console.log('Error connecting to mongo db:', err);
 });
 db.once('open', () => {
   console.log('Connected to mongo db');

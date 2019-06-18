@@ -1,7 +1,7 @@
 config:
   target: 'http://localhost:3002'
   http:
-    pool: 100000
+    pool: 10
   phases:
     - duration: 60
       arrivalRate: 1
@@ -10,7 +10,7 @@ scenarios:
     flow:
       - loop:
         - get:
-            url: '/{{ $randomNumber(9000000, 10000000) }}'
+            url: '/{{ $randomNumber(9000000, 10000000) }}/'
         count: 1000
   - name: "Create new author"
     flow:
