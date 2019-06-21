@@ -21,6 +21,7 @@ class App extends React.Component {
   getInfo() {
     const id = Number(window.location.pathname.split('/')[1]) || 1;
     console.log('id', id);
+    // change url to ec2 instance if needed
     $.ajax({
       url: `http://localhost:3002/author/${id}`,
       method: 'GET',

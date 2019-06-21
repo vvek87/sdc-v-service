@@ -29,3 +29,5 @@ dist/
 
 # new relic license key
 newrelic.js
+
+/client/public/bundle.js

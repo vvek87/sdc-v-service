@@ -63,6 +63,7 @@
     "mocha": "^6.0.2",
     "mongo": "^0.1.0",
     "mongoose": "^5.5.12",
+    "mongoose-sequence": "^5.1.0",
     "morgan": "^1.9.1",
     "newrelic": "^5.9.1",
     "npm": "^6.9.0",

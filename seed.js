@@ -31,3 +31,5 @@ const seedAuthors = (i) => {
 };
 
 seedAuthors(0);
+
+db.collection('counters').insert({ id: '_id', reference_value: null, seq: 10000000 });

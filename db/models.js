@@ -1,10 +1,14 @@
 const mongoose = require('mongoose');
 
+const AutoIncrementFactory = require('mongoose-sequence');
+
 require('dotenv').config();
 
 // change url to aws ec2 if needed
-mongoose.connect('mongodb://localhost:27017/goodreads', { useNewUrlParser: true, autoIndex: false });
+mongoose.connect('mongodb://localhost:27017/goodreads', { useNewUrlParser: true });
 const db = mongoose.connection;
+
+const AutoIncrement = AutoIncrementFactory(db);
 
 db.on('error', (err) => {
   console.log('Error connecting to mongo db:', err);
@@ -20,20 +24,11 @@ const authorSchema = new mongoose.Schema({
   biography: String,
   author_image: String,
   books: Array,
-});
+}, { _id: false });
+
+authorSchema.plugin(AutoIncrement);
 
 const Author = mongoose.model('author', authorSchema);
-
-let nextAuthorId;
-
-Author.estimatedDocumentCount({}, (error, lastId) => {
-  if (error) {
-    console.log('Error finding next _id value: ', error);
-  } else {
-    nextAuthorId = lastId;
-    console.log('Next _id value is : ', nextAuthorId);
-  }
-});
 
 
 const getAuthorInfo = (authId, callback) => {
@@ -66,8 +61,7 @@ const deleteById = (id, callback) => {
 };
 
 const addAuthorAndBook = (author, callback) => {
-  nextAuthorId += 1;
-  author._id = nextAuthorId;
+  delete author._id;
   Author.create(author, (err) => {
     if (err) {
       console.log('Create author and books error: ', err);
