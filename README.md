@@ -5,13 +5,6 @@
     author will display along with a pop-up window with detailed book information that displays
     if the user hovers over a particular book title.
 
-## Related Projects
-
-  - https://github.com/rpt12-knightrider/jb-service
-  - https://github.com/rpt12-knightrider/s-service
-  - https://github.com/rpt12-knightrider/mj-service
-  - https://github.com/rpt12-knightrider/sm-service
-
 ## Table of Contents
 
 1. [Usage](#Usage)
