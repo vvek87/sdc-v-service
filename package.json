@@ -65,7 +65,7 @@
     "mongoose": "^5.5.12",
     "morgan": "^1.9.1",
     "newrelic": "^5.9.1",
-    "npm": "^6.9.0",
+    "npm": "^6.14.6",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
     "react-tooltip": "^3.10.0",
