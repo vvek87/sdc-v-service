@@ -59,7 +59,7 @@
     "identity-obj-proxy": "^3.0.0",
     "install": "^0.12.2",
     "jquery": "^3.4.0",
-    "jsdom": "^14.0.0",
+    "jsdom": "^16.5.0",
     "mocha": "^6.0.2",
     "mongo": "^0.1.0",
     "mongoose": "^5.5.12",
